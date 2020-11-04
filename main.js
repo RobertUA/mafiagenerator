@@ -1,10 +1,10 @@
 let count; 
-
+let rl=[]
 let players=[];
 function Addp()
 {
-    let rl=[];
-
+    document.getElementById("btn").disabled = true;
+    rl=[];
     players=[];
     for(let i=0; i<document.getElementById("count").value;i++)
     {
@@ -33,6 +33,7 @@ function Addp()
     http.onreadystatechange = function() 
     {
         clear();
+        document.getElementById("btn").disabled = false;
         if (this.readyState == 4 && this.status == 200) 
         {
             let r = [];

@@ -13,6 +13,7 @@ input
 {
     background-color: whitesmoke;
     font-size: 1.2rem;
+    outline: none;
 }
 .row
 {

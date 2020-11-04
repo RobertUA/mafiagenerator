@@ -21,7 +21,8 @@ function Addp()
     }
     if(document.getElementById("5").checked==true) rl.push("МАНЬЯК");
     if(document.getElementById("6").checked==true) rl.push("ЖУРНАЛИСТ");
-    if(document.getElementById("7").checked==true) rl.push("ЕКСТРА+");
+    if(document.getElementById("7").checked==true) rl.push("1ЕКСТРА1");
+    if(document.getElementById("8").checked==true) rl.push("2ЕКСТРА2");
     for(let i=0;i<c;i++)
     {
         rl.push("МАФИЯ");
@@ -43,7 +44,6 @@ function Addp()
 
                 players[Number(r[i])]=rl[i];
             }
-            console.log(players);
             count=0
             for(let i=0; i<document.getElementById("count").value;i++)
             {
@@ -53,9 +53,11 @@ function Addp()
                 document.getElementById("list").appendChild(div);
                 let input = document.createElement("input");
                 input.value=count;
+                input.readOnly=true;
                 div.appendChild(input);
                 input = document.createElement("input");
                 input.value=players[i];
+                input.readOnly=true;
                 div.appendChild(input);
             }
         }

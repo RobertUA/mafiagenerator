@@ -23,7 +23,7 @@ main
 {
     margin-top: 1rem;
     display: grid;
-    grid-template-columns: minmax(8.5rem,50%) minmax(8rem, 20%);
+    grid-template-columns: minmax(8.5rem,12rem) minmax(8rem, 10rem);
 }
 #roles div
 {
@@ -32,6 +32,7 @@ main
 #roles
 {
     font-size: 1.2rem;
+    border: solid black;
     display: grid;
     grid-template-columns: 1rem minmax(7rem, 100%);
     grid-auto-rows: 1.5rem;

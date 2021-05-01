@@ -8,11 +8,13 @@ function Hide()
     {
         document.getElementById("list").style.display = "block";
         document.getElementById("hide").textContent = "СПРЯТАТЬ"
+        localStorage.setItem("hide", 0);
     }
     else 
     {
         document.getElementById("list").style.display = "none";
         document.getElementById("hide").textContent = "ПОКАЗАТЬ"
+        localStorage.setItem("hide", 1);
     }
 }
 
@@ -105,9 +107,22 @@ function load()
 {
     if(localStorage.length==0) 
     {
-        alert("Введите необходимые значения:\n - Кол-во игроков\n - Кол-во мафий");
+        alert("Была обновОчка.\n - Теперь данные сохраняются.\n - У ролей есть цвета\n - Кнопка скрытия");
+        localStorage.setItem('hide', 0);
         return 1;
     }
+
+    if(localStorage.getItem('hide') == 0) 
+    {
+        document.getElementById("list").style.display = "block";
+        document.getElementById("hide").textContent = "СПРЯТАТЬ"
+    }
+    else 
+    {
+        document.getElementById("list").style.display = "none";
+        document.getElementById("hide").textContent = "ПОКАЗАТЬ"
+    }
+
     let str = localStorage.getItem("values");
     if(str[0]=='1') document.getElementById("1").checked=true;
     if(str[1]=='1') document.getElementById("2").checked=true;

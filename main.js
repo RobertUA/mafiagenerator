@@ -32,6 +32,7 @@ function Addp()
     {
         document.getElementById("list").style.display = "block";
         document.getElementById("hide").textContent = "СПРЯТАТЬ"
+
     }
 
     document.getElementById("btn").disabled = true;
@@ -122,6 +123,7 @@ function load()
         localStorage.setItem('hide', 0);
         document.getElementById("hide").textContent = "ПОКАЗАТЬ"
         document.getElementById("list").style.display = "none";
+        document.getElementById("hide").disabled = true;
         return 1;
     }
 

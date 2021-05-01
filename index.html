@@ -7,23 +7,24 @@
     <meta charset="utf-8"/> 
     <title>Генератор</title>
 </head>
-<body onload="Addp()">
+<body onload="load()">
     <nav>
-        <input id="mafc" value=3>
-        <input id="count" value=10>
+        <input placeholder="Кол-во мафий" oninput="updatevalues()" id="mafc">
+        <input placeholder="Кол-во игроков" oninput="updatevalues()" id="count">
+        <button id='hide' onclick="Hide()" style="margin-top: 1rem; font-size: 1.2rem; background-color: yellow; outline: none;">СПРЯТАТЬ</button>
         <button id='btn' onclick="Addp()" style="margin-top: 1rem; font-size: 1.2rem; background-color: yellow; outline: none;">РАНДОМ</button>
     </nav>
     <main>
         <div id="list"></div>
         <div id="roles">
-            <input type="checkbox" id='1'><div>Путана</div>
-            <input type="checkbox" checked id='2'><div>Доктор</div>
-            <input type="checkbox" checked id='3'><div>Шериф</div>
-            <input type="checkbox" checked id='4'><div>Дон</div>
-            <input type="checkbox" id='5'><div>Маньяк</div>
-            <input type="checkbox" id='6'><div>Журналист</div>
-            <input type="checkbox" id='7'><div>1Екстра1</div>
-            <input type="checkbox" id='8'><div>2Екстра2</div>
+            <input onchange="updatevalues()" type="checkbox" id='1'><div>Путана</div>
+            <input onchange="updatevalues()" type="checkbox" id='2'><div>Доктор</div>
+            <input onchange="updatevalues()" type="checkbox" id='3'><div>Шериф</div>
+            <input onchange="updatevalues()" type="checkbox" id='4'><div>Дон</div>
+            <input onchange="updatevalues()" type="checkbox" id='5'><div>Маньяк</div>
+            <input onchange="updatevalues()" type="checkbox" id='6'><div>Журналист</div>
+            <input onchange="updatevalues()" type="checkbox" id='7'><div>1ЕКСТРА1</div>
+            <input onchange="updatevalues()" type="checkbox" id='8'><div>2ЕКСТРА2</div>
         </div>
     </main>
 </body>

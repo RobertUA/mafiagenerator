@@ -5,7 +5,7 @@ body
 nav
 {
     display: grid;
-    grid-template-columns: minmax(9.25rem, 25%) minmax(9.25rem, 25%);
+    grid-template-columns: minmax(9.25rem, 30%) minmax(9.25rem, 30%);
     background-color: gray;
 }
 input
@@ -17,13 +17,13 @@ input
 .row
 {
     display: grid;
-    grid-template-columns: minmax(3.5rem, 15%) minmax(9.5rem, 85%);
+    grid-template-columns: minmax(4rem, 15%) minmax(10rem, 85%);
 }
 main
 {
     margin-top: 1rem;
     display: grid;
-    grid-template-columns: minmax(14.5rem,25%) minmax(8rem, 25%);
+    grid-template-columns: minmax(16rem,30%) minmax(8.5rem, 30%);
 }
 #roles div
 {

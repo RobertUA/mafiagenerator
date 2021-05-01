@@ -120,6 +120,7 @@ function load()
     {
         alert("Была обновОчка.\n - Данные сохраняются.\n - У ролей есть цвета.\n - Кнопка \"СПРЯТАТЬ/ПОКАЗАТЬ\".");
         localStorage.setItem('hide', 0);
+        document.getElementById("hide").textContent = "ПОКАЗАТЬ"
         document.getElementById("list").style.display = "none";
         return 1;
     }

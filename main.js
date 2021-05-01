@@ -118,7 +118,7 @@ function load()
 {
     if(localStorage.length==0) 
     {
-        alert("Была обновОчка.\n - Теперь данные сохраняются.\n - У ролей есть цвета\n - Кнопка \"СПРЯТАТЬ/ПОКАЗАТЬ\"");
+        alert("Была обновОчка.\n - Данные сохраняются.\n - У ролей есть цвета.\n - Кнопка \"СПРЯТАТЬ/ПОКАЗАТЬ\".");
         localStorage.setItem('hide', 0);
         document.getElementById("list").style.display = "none";
         return 1;

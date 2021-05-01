@@ -18,13 +18,13 @@ function Hide()
 
 function Addp()
 {
-    if(document.getElementById("count").value<document.getElementById("mafc").value)
+    if(Number(document.getElementById("count").value)<Number(document.getElementById("mafc").value))
     {
         let temp = document.getElementById("count").value;
         document.getElementById("count").value = document.getElementById("mafc").value;
         document.getElementById("mafc").value = temp;
     }
-    if(document.getElementById("count").value<2 || document.getElementById("mafc").value<1) return 1;
+    if(Number(document.getElementById("count").value)<2 || Number(document.getElementById("mafc").value)<1) return 1;
 
     document.getElementById("btn").disabled = true;
     rl=[];

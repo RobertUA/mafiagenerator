@@ -10,7 +10,7 @@ function Hide()
         document.getElementById("hide").textContent = "СПРЯТАТЬ"
         localStorage.setItem("hide", 0);
     }
-    else 
+    else
     {
         document.getElementById("list").style.display = "none";
         document.getElementById("hide").textContent = "ПОКАЗАТЬ"
@@ -28,7 +28,14 @@ function Addp()
     }
     if(Number(document.getElementById("count").value)<2 || Number(document.getElementById("mafc").value)<1) return 1;
 
+    if(localStorage.getItem('hide')==0 && document.getElementById("list").style.display=='none') 
+    {
+        document.getElementById("list").style.display = "block";
+        document.getElementById("hide").textContent = "СПРЯТАТЬ"
+    }
+
     document.getElementById("btn").disabled = true;
+    document.getElementById("hide").disabled = true;
     rl=[];
     players=[];
     for(let i=0; i<document.getElementById("count").value;i++)
@@ -60,7 +67,11 @@ function Addp()
     http.onreadystatechange = function() 
     {
         clear();
+        if(document.getElementById("list").style.display == "none") localStorage.setItem("hide", 1);
+        else localStorage.setItem("hide", 0);
+
         document.getElementById("btn").disabled = false;
+        document.getElementById("hide").disabled = false;
         if (this.readyState == 4 && this.status == 200) 
         {
             let r = [];
@@ -109,6 +120,7 @@ function load()
     {
         alert("Была обновОчка.\n - Теперь данные сохраняются.\n - У ролей есть цвета\n - Кнопка скрытия");
         localStorage.setItem('hide', 0);
+        document.getElementById("list").style.display = "none";
         return 1;
     }
 

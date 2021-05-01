@@ -5,7 +5,7 @@ body
 nav
 {
     display: grid;
-    grid-template-columns: minmax(9.25rem, 30%) minmax(9.25rem, 30%);
+    grid-template-columns: minmax(9.25rem, 20%) minmax(9.25rem, 20%);
     background-color: gray;
 }
 input

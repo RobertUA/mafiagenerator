@@ -117,7 +117,7 @@ function Addp()
 
 function load()
 {
-    if(localStorage.length==0) 
+    if(localStorage.length<=1) 
     {
         alert("Была обновОчка.\n - Данные сохраняются.\n - У ролей есть цвета.\n - Кнопка \"СПРЯТАТЬ/ПОКАЗАТЬ\".");
         localStorage.setItem('hide', 0);

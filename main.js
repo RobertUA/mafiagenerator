@@ -148,12 +148,8 @@ function load()
     if(localStorage.getItem("mafcount")!=undefined) document.getElementById("mafc").value = localStorage.getItem("mafcount");
     if(localStorage.getItem("playerscount")!=undefined) document.getElementById("count").value = localStorage.getItem("playerscount");
 
-    if(localStorage.length<=0) alert("[2.2] Была обновОчка\n - Данные сохраняются\n - У ролей есть цвета\n - Переключение вида \"ИГРОКИ/РОЛИ\"");
+    if(localStorage.length<=0) alert("[2.2] Была обновОчка\n - Данные сохраняются\n - У ролей есть цвета\n - Переключение вида \"ИГРОКИ/РОЛИ\"\n\n[2.3] Была обновОчка\n - Клик по игроку, чтобы зачеркнуть (выгнали/убили)\n - Текст в списке не должен выделяться");
 
-    if(localStorage.getItem("version")!="2.3") 
-    {
-        alert("[2.3] Была обновОчка\n - Клик по игроку, чтобы зачеркнуть (выгнали/убили)\n - Текст в списке не должен выделяться");
-    }
     if(localStorage.length<=4) 
     {
         localStorage.setItem('hide', 0);
@@ -210,12 +206,17 @@ function load()
         })
         div.appendChild(input);
     }
+    if(localStorage.getItem("version")!="2.3") 
+    {
+        alert("[2.3] Была обновОчка\n - Клик по игроку, чтобы зачеркнуть (выгнали/убили)\n - Текст в списке не должен выделяться");
+    }
     localStorage.setItem("version", "2.3");
 }
 
 function clear()
 {
     localStorage.clear();
+    localStorage.setItem("version", "2.3");
     while (document.getElementById("list").firstChild) 
     {
         document.getElementById("list").removeChild(document.getElementById("list").firstChild);

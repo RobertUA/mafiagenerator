@@ -2,12 +2,12 @@
 <html lang="ru">
   <head>
     <meta name="viewport" content="width=device-width">
-    <script src="main.js"></script>
     <link href="style.css" rel="stylesheet">
     <meta charset="utf-8"/> 
-    <title>Генератор (v2.2)</title>
+    <title>Генератор (v2.3)</title>
+    <script src="main.js"></script>
 </head>
-<body onload="load()">
+<body onload="load()" >
     <nav>
         <input placeholder="Кол-во игроков" oninput="updatevalues()" id="count">
         <input placeholder="Кол-во мафий" oninput="updatevalues()" id="mafc">
@@ -15,7 +15,7 @@
         <button id='btn' onclick="Addp()" style="margin-top: 1rem; font-size: 1.2rem; background-color: yellow; outline: none;">РАНДОМ</button>
     </nav>
     <main>
-        <div id="list"></div>
+        <div id="list" class='unselectable'></div>
         <div id="roles">
             <input onchange="updatevalues()" type="checkbox" id='1'><div>Путана</div>
             <input onchange="updatevalues()" type="checkbox" id='2'><div>Доктор</div>

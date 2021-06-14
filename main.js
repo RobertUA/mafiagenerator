@@ -96,21 +96,30 @@ function Addp()
                 let div = document.createElement("div");
                 div.className="row";
                 document.getElementById("list").appendChild(div);
-                let input = document.createElement("input");
-                input.value=count;
+                let input = document.createElement("div");
+                input.textContent=count;
                 input.readOnly=true;
                 div.appendChild(input);
-                input = document.createElement("input");
-                input.value=players[i];
-                if(input.value=="МАФИЯ" || input.value=="ДОН") input.style.backgroundColor="#b4b4b4";
-                if(input.value=="ДОКТОР") input.style.backgroundColor="#8cc78f";
-                if(input.value=="ПУТАНА") input.style.backgroundColor="#fd8dbb";
-                if(input.value=="ШЕРИФ") input.style.backgroundColor="#9ac3e4";
-                if(input.value=="ЖУРНАЛИСТ") input.style.backgroundColor="#86e9f7";
-                if(input.value=="МАНЬЯК") input.style.backgroundColor="#d18775";
-                if(input.value=="1ЕКСТРА1") input.style.backgroundColor="#d89dff";
-                if(input.value=="2ЕКСТРА2") input.style.backgroundColor="#fffd9f";
+                input = document.createElement("div");
+                input.textContent=players[i];
+                input.style.cursor='default'
+                if(input.textContent=="МАФИЯ" || input.textContent=="ДОН") input.style.backgroundColor="#b4b4b4";
+                if(input.textContent=="ДОКТОР") input.style.backgroundColor="#8cc78f";
+                if(input.textContent=="ПУТАНА") input.style.backgroundColor="#fd8dbb";
+                if(input.textContent=="ШЕРИФ") input.style.backgroundColor="#9ac3e4";
+                if(input.textContent=="ЖУРНАЛИСТ") input.style.backgroundColor="#86e9f7";
+                if(input.textContent=="МАНЬЯК") input.style.backgroundColor="#d18775";
+                if(input.textContent=="1ЕКСТРА1") input.style.backgroundColor="#d89dff";
+                if(input.textContent=="2ЕКСТРА2") input.style.backgroundColor="#fffd9f";
                 input.readOnly=true;
+                input.style.cursor='pointer'
+                input.addEventListener("click", function()
+                {
+                    var t = this.previousSibling;
+                    t.style.backgroundColor = (t.style.backgroundColor == '') ? 'red' : '';
+                    this.style.textDecoration = (this.style.textDecoration == 'line-through') ? 'none' : 'line-through';
+                    this.style.color = (this.style.color == 'red') ? 'black' : 'red';
+                })
                 div.appendChild(input);
             }
             for(let i=0;i<players.length;i++)
@@ -139,8 +148,12 @@ function load()
     if(localStorage.getItem("mafcount")!=undefined) document.getElementById("mafc").value = localStorage.getItem("mafcount");
     if(localStorage.getItem("playerscount")!=undefined) document.getElementById("count").value = localStorage.getItem("playerscount");
 
-    if(localStorage.length<=0) alert("Была обновОчка.\n - Данные сохраняются.\n - У ролей есть цвета.\n - Переключение вида \"ИГРОКИ/РОЛИ\".");
+    if(localStorage.length<=0) alert("[2.2] Была обновОчка\n - Данные сохраняются\n - У ролей есть цвета\n - Переключение вида \"ИГРОКИ/РОЛИ\"");
 
+    if(localStorage.getItem("version")!="2.3") 
+    {
+        alert("[2.3] Была обновОчка\n - Клик по игроку, чтобы зачеркнуть (выгнали/убили)\n - Текст в списке не должен выделяться");
+    }
     if(localStorage.length<=4) 
     {
         localStorage.setItem('hide', 0);
@@ -168,25 +181,36 @@ function load()
     {
         count++;
         let div = document.createElement("div");
-        div.className="row";
+        div.className="row unselectable";
         document.getElementById("list").appendChild(div);
-        let input = document.createElement("input");
-        input.value=count;
+        let input = document.createElement("div");
+        input.textContent=count;
         input.readOnly=true;
+        input.className='unselectable';
         div.appendChild(input);
-        input = document.createElement("input");
-        input.value=localStorage.getItem("p"+i);
+        input = document.createElement("div");
+        input.textContent=localStorage.getItem("p"+i);
         input.readOnly=true;
-        if(input.value=="МАФИЯ" || input.value=="ДОН") input.style.backgroundColor="#b4b4b4";
-        if(input.value=="ДОКТОР") input.style.backgroundColor="#8cc78f";
-        if(input.value=="ПУТАНА") input.style.backgroundColor="#fd8dbb";
-        if(input.value=="ШЕРИФ") input.style.backgroundColor="#9ac3e4";
-        if(input.value=="ЖУРНАЛИСТ") input.style.backgroundColor="#86e9f7";
-        if(input.value=="МАНЬЯК") input.style.backgroundColor="#d18775";
-        if(input.value=="1ЕКСТРА1") input.style.backgroundColor="#d89dff";
-        if(input.value=="2ЕКСТРА2") input.style.backgroundColor="#fffd9f";
+        if(input.textContent=="МАФИЯ" || input.textContent=="ДОН") input.style.backgroundColor="#b4b4b4";
+        if(input.textContent=="ДОКТОР") input.style.backgroundColor="#8cc78f";
+        if(input.textContent=="ПУТАНА") input.style.backgroundColor="#fd8dbb";
+        if(input.textContent=="ШЕРИФ") input.style.backgroundColor="#9ac3e4";
+        if(input.textContent=="ЖУРНАЛИСТ") input.style.backgroundColor="#86e9f7";
+        if(input.textContent=="МАНЬЯК") input.style.backgroundColor="#d18775";
+        if(input.textContent=="1ЕКСТРА1") input.style.backgroundColor="#d89dff";
+        if(input.textContent=="2ЕКСТРА2") input.style.backgroundColor="#fffd9f";
+        input.style.cursor='pointer'
+        input.className='unselectable';
+        input.addEventListener("click", function()
+        {
+            var t = this.previousSibling
+            t.style.backgroundColor = (t.style.backgroundColor == '') ? 'red' : '';
+            this.style.textDecoration = (this.style.textDecoration == 'line-through') ? 'none' : 'line-through';
+            this.style.color = (this.style.color == 'red') ? 'black' : 'red';
+        })
         div.appendChild(input);
     }
+    localStorage.setItem("version", "2.3");
 }
 
 function clear()

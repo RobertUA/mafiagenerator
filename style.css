@@ -8,12 +8,6 @@ nav
     grid-template-columns: minmax(9.25rem, 20%) minmax(9.25rem, 20%);
     background-color: gray;
 }
-input
-{
-    background-color: whitesmoke;
-    font-size: 1.2rem;
-    outline: none;
-}
 .row
 {
     display: grid;
@@ -31,7 +25,7 @@ main
 }
 #roles
 {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     display: grid;
     grid-template-columns: 1rem minmax(7rem, 100%);
     grid-auto-rows: 1.5rem;
@@ -42,4 +36,26 @@ main
     grid-template-rows: auto;
     max-height: 30rem;
     overflow: auto;
+}
+input
+{
+    background-color: whitesmoke;
+    font-size: 1.5rem;
+    outline: none;
+}
+.unselectable div
+{
+    margin: 0.5px 0.5px 0.5px 0.5px;
+    border: 0.5px dotted black;
+    background-color: whitesmoke;
+    font-size: 1.5rem;
+    outline: none;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version, currently not supported by any browser */
+    -khtml-user-select: none;    /* KHTML browsers (e.g. Konqueror) */
 }

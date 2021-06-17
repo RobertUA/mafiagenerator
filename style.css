@@ -23,10 +23,14 @@ main
 {
     margin-left: 0.5rem;
 }
+#roles input
+{
+    font-size: 1.25rem;
+}
 #roles
 {
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     display: grid;
     grid-template-columns: 1rem minmax(11.5rem, 14.5rem) minmax(11.5rem, 14.5rem);
     grid-auto-rows: 2rem;

@@ -50,7 +50,7 @@ function Addp()
     players=[];
     for(let i=0; i<document.getElementById("count").value;i++)
     {
-        players.push(document.getElementById("f9").textContent);
+        players.push(document.getElementById("f11").textContent);
     }
     
     let c=Number(document.getElementById("mafc").value);
@@ -66,9 +66,11 @@ function Addp()
     if(document.getElementById("6").checked==true) rl.push(document.getElementById("f6").textContent);
     if(document.getElementById("7").checked==true) rl.push(document.getElementById("f7").textContent);
     if(document.getElementById("8").checked==true) rl.push(document.getElementById("f8").textContent);
+    if(document.getElementById("9").checked==true) rl.push(document.getElementById("f9").textContent);
+    if(document.getElementById("10").checked==true) rl.push(document.getElementById("f10").textContent);
     for(let i=0;i<c;i++)
     {
-        rl.push(document.getElementById("f10").textContent);
+        rl.push(document.getElementById("f12").textContent);
     }
     let xmlr= "https://www.random.org/sequences/?min=0&max="+Number(document.getElementById("count").value-1)+"&col=1&format=plain";
     let http = new XMLHttpRequest()
@@ -105,7 +107,7 @@ function Addp()
                 input = document.createElement("div");
                 input.textContent=players[i];
                 input.style.cursor='default'
-                if(input.textContent==document.getElementById("f10").textContent || input.textContent==document.getElementById("f4").textContent) input.style.backgroundColor="#b4b4b4";
+                if(input.textContent==document.getElementById("f12").textContent || input.textContent==document.getElementById("f4").textContent) input.style.backgroundColor="#b4b4b4";
                 if(input.textContent==document.getElementById("f1").textContent) input.style.backgroundColor="#fd8dbb"; // Путана
                 if(input.textContent==document.getElementById("f2").textContent) input.style.backgroundColor="#8cc78f"; //ДОКТОР
                 if(input.textContent==document.getElementById("f3").textContent) input.style.backgroundColor="#9ac3e4"; //ШЕРИФ
@@ -113,6 +115,8 @@ function Addp()
                 if(input.textContent==document.getElementById("f6").textContent) input.style.backgroundColor="#86e9f7"; //ЖУРНАЛИСТ
                 if(input.textContent==document.getElementById("f7").textContent) input.style.backgroundColor="#d89dff"; //1ЕКСТРА1
                 if(input.textContent==document.getElementById("f8").textContent) input.style.backgroundColor="#fffd9f"; //2ЕКСТРА2
+                if(input.textContent==document.getElementById("f9").textContent) input.style.backgroundColor="#c8f54c"; //3ЕКСТРА3
+                if(input.textContent==document.getElementById("f10").textContent) input.style.backgroundColor="#6c9c98"; //4ЕКСТРА4
                 input.readOnly=true;
                 input.style.cursor='pointer'
                 input.addEventListener("click", function()
@@ -128,7 +132,7 @@ function Addp()
             {
                 localStorage.setItem("p"+i,players[i]);
             }
-            for(let i=1; i<=10;i++) updaterolesnames(""+i);
+            for(let i=1; i<=12;i++) updaterolesnames(""+i);
             updatevalues();
         }
     }
@@ -164,6 +168,8 @@ function load()
         if(str[5]=='1') document.getElementById("6").checked=true;
         if(str[6]=='1') document.getElementById("7").checked=true;
         if(str[7]=='1') document.getElementById("8").checked=true;
+        if(str[8]=='1') document.getElementById("9").checked=true;
+        if(str[9]=='1') document.getElementById("10").checked=true;
     }
 
     if(localStorage.getItem("n1")!=undefined && localStorage.getItem("n1")!="" && localStorage.getItem("n1")!=getdflt("1")) { 
@@ -226,6 +232,18 @@ function load()
     }
     else document.getElementById("f10").textContent=getdflt("10");
 
+    if(localStorage.getItem("n11")!=undefined && localStorage.getItem("n11")!="" && localStorage.getItem("n11")!=getdflt("11")) { 
+        document.getElementById("f11").textContent=localStorage.getItem("n11");
+        document.getElementById("n11").value=document.getElementById("f11").textContent;
+    }
+    else document.getElementById("f11").textContent=getdflt("11");
+
+    if(localStorage.getItem("n12")!=undefined && localStorage.getItem("n12")!="" && localStorage.getItem("n12")!=getdflt("12")) { 
+        document.getElementById("f12").textContent=localStorage.getItem("n12");
+        document.getElementById("n12").value=document.getElementById("f12").textContent;
+    }
+    else document.getElementById("f12").textContent=getdflt("12");
+
     if(localStorage.getItem("mafcount")!=undefined) document.getElementById("mafc").value = localStorage.getItem("mafcount");
     if(localStorage.getItem("playerscount")!=undefined) document.getElementById("count").value = localStorage.getItem("playerscount");
 
@@ -266,7 +284,7 @@ function load()
         input = document.createElement("div");
         input.textContent=localStorage.getItem("p"+i);
         input.readOnly=true;
-        if(input.textContent==document.getElementById("f10").textContent || input.textContent==document.getElementById("f4").textContent) input.style.backgroundColor="#b4b4b4";
+        if(input.textContent==document.getElementById("f12").textContent || input.textContent==document.getElementById("f4").textContent) input.style.backgroundColor="#b4b4b4";
         if(input.textContent==document.getElementById("f1").textContent) input.style.backgroundColor="#fd8dbb"; // Путана
         if(input.textContent==document.getElementById("f2").textContent) input.style.backgroundColor="#8cc78f"; //ДОКТОР
         if(input.textContent==document.getElementById("f3").textContent) input.style.backgroundColor="#9ac3e4"; //ШЕРИФ
@@ -274,6 +292,8 @@ function load()
         if(input.textContent==document.getElementById("f6").textContent) input.style.backgroundColor="#86e9f7"; //ЖУРНАЛИСТ
         if(input.textContent==document.getElementById("f7").textContent) input.style.backgroundColor="#d89dff"; //1ЕКСТРА1
         if(input.textContent==document.getElementById("f8").textContent) input.style.backgroundColor="#fffd9f"; //2ЕКСТРА2
+        if(input.textContent==document.getElementById("f9").textContent) input.style.backgroundColor="#c8f54c"; //3ЕКСТРА3
+        if(input.textContent==document.getElementById("f10").textContent) input.style.backgroundColor="#6c9c98"; //4ЕКСТРА4
         input.style.cursor='pointer'
         input.className='unselectable';
         input.addEventListener("click", function()
@@ -314,6 +334,8 @@ function updatevalues()
     if(document.getElementById("6").checked==true) str+='1'; else str+='0';
     if(document.getElementById("7").checked==true) str+='1'; else str+='0';
     if(document.getElementById("8").checked==true) str+='1'; else str+='0';
+    if(document.getElementById("9").checked==true) str+='1'; else str+='0';
+    if(document.getElementById("10").checked==true) str+='1'; else str+='0';
 
     localStorage.setItem("values", str);
     localStorage.setItem("mafcount",  document.getElementById("mafc").value);
@@ -331,9 +353,11 @@ function getdflt(i)
         case '5': return "МАНЬЯК"
         case '6': return "ЖУРНАЛИСТ"
         case '7': return "1ЕКСТРА1"
-        case '8': return "1ЕКСТРА1"
-        case '9': return "мирный"
-        case '10': return "МАФИЯ"
+        case '8': return "2ЕКСТРА2"
+        case '9': return "3ЕКСТРА3"
+        case '10': return "4ЕКСТРА4"
+        case '11': return "мирный"
+        case '12': return "МАФИЯ"
     }
 }
 

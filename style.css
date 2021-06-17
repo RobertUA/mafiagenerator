@@ -11,13 +11,13 @@ nav
 .row
 {
     display: grid;
-    grid-template-columns: minmax(4rem, 15%) minmax(10rem, 85%);
+    grid-template-columns: minmax(4rem, 15%) minmax(14rem, 95%);
 }
 main
 {
     margin-top: 1rem;
     display: grid;
-    grid-template-columns: minmax(16rem,30%) minmax(8.5rem, 30%);
+    /*grid-template-columns: minmax(16rem,30%) minmax(8.5rem, 30%);*/
 }
 #roles div
 {
@@ -25,10 +25,11 @@ main
 }
 #roles
 {
+    align-items: center;
     font-size: 1.5rem;
     display: grid;
-    grid-template-columns: 1rem minmax(7rem, 100%);
-    grid-auto-rows: 1.5rem;
+    grid-template-columns: 1rem minmax(11rem, 15rem) minmax(11rem, 15rem);
+    grid-auto-rows: 2rem;
     
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none;   /* Chrome/Safari/Opera */
@@ -41,6 +42,8 @@ main
 #list
 {
     display: grid;
+    min-width: 18.5rem;
+    max-width: 40%;
     grid-template-rows: auto;
     max-height: 30rem;
     overflow: auto;

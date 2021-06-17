@@ -2,6 +2,8 @@ let count;
 let rl=[]
 let players=[];
 
+current_version="2.4"
+
 function Hide()
 {
     if(document.getElementById("list").style.display == "none") 
@@ -48,25 +50,25 @@ function Addp()
     players=[];
     for(let i=0; i<document.getElementById("count").value;i++)
     {
-        players.push("мирный");
+        players.push(document.getElementById("f9").textContent);
     }
     
     let c=Number(document.getElementById("mafc").value);
-    if(document.getElementById("1").checked==true) rl.push("ПУТАНА");
-    if(document.getElementById("2").checked==true) rl.push("ДОКТОР");
-    if(document.getElementById("3").checked==true) rl.push("ШЕРИФ");
+    if(document.getElementById("1").checked==true) rl.push(document.getElementById("f1").textContent);
+    if(document.getElementById("2").checked==true) rl.push(document.getElementById("f2").textContent);
+    if(document.getElementById("3").checked==true) rl.push(document.getElementById("f3").textContent);
     if(document.getElementById("4").checked==true) 
     {
         c--;
-        rl.push("ДОН");
+        rl.push(document.getElementById("f4").textContent);
     }
-    if(document.getElementById("5").checked==true) rl.push("МАНЬЯК");
-    if(document.getElementById("6").checked==true) rl.push("ЖУРНАЛИСТ");
-    if(document.getElementById("7").checked==true) rl.push("1ЕКСТРА1");
-    if(document.getElementById("8").checked==true) rl.push("2ЕКСТРА2");
+    if(document.getElementById("5").checked==true) rl.push(document.getElementById("f5").textContent);
+    if(document.getElementById("6").checked==true) rl.push(document.getElementById("f6").textContent);
+    if(document.getElementById("7").checked==true) rl.push(document.getElementById("f7").textContent);
+    if(document.getElementById("8").checked==true) rl.push(document.getElementById("f8").textContent);
     for(let i=0;i<c;i++)
     {
-        rl.push("МАФИЯ");
+        rl.push(document.getElementById("f10").textContent);
     }
     let xmlr= "https://www.random.org/sequences/?min=0&max="+Number(document.getElementById("count").value-1)+"&col=1&format=plain";
     let http = new XMLHttpRequest()
@@ -103,14 +105,14 @@ function Addp()
                 input = document.createElement("div");
                 input.textContent=players[i];
                 input.style.cursor='default'
-                if(input.textContent=="МАФИЯ" || input.textContent=="ДОН") input.style.backgroundColor="#b4b4b4";
-                if(input.textContent=="ДОКТОР") input.style.backgroundColor="#8cc78f";
-                if(input.textContent=="ПУТАНА") input.style.backgroundColor="#fd8dbb";
-                if(input.textContent=="ШЕРИФ") input.style.backgroundColor="#9ac3e4";
-                if(input.textContent=="ЖУРНАЛИСТ") input.style.backgroundColor="#86e9f7";
-                if(input.textContent=="МАНЬЯК") input.style.backgroundColor="#d18775";
-                if(input.textContent=="1ЕКСТРА1") input.style.backgroundColor="#d89dff";
-                if(input.textContent=="2ЕКСТРА2") input.style.backgroundColor="#fffd9f";
+                if(input.textContent==document.getElementById("f10").textContent || input.textContent==document.getElementById("f4").textContent) input.style.backgroundColor="#b4b4b4";
+                if(input.textContent==document.getElementById("f1").textContent) input.style.backgroundColor="#fd8dbb"; // Путана
+                if(input.textContent==document.getElementById("f2").textContent) input.style.backgroundColor="#8cc78f"; //ДОКТОР
+                if(input.textContent==document.getElementById("f3").textContent) input.style.backgroundColor="#9ac3e4"; //ШЕРИФ
+                if(input.textContent==document.getElementById("f5").textContent) input.style.backgroundColor="#d18775"; //МАНЬЯК
+                if(input.textContent==document.getElementById("f6").textContent) input.style.backgroundColor="#86e9f7"; //ЖУРНАЛИСТ
+                if(input.textContent==document.getElementById("f7").textContent) input.style.backgroundColor="#d89dff"; //1ЕКСТРА1
+                if(input.textContent==document.getElementById("f8").textContent) input.style.backgroundColor="#fffd9f"; //2ЕКСТРА2
                 input.readOnly=true;
                 input.style.cursor='pointer'
                 input.addEventListener("click", function()
@@ -126,6 +128,7 @@ function Addp()
             {
                 localStorage.setItem("p"+i,players[i]);
             }
+            for(let i=1; i<=10;i++) updaterolesnames(""+i);
             updatevalues();
         }
     }
@@ -133,6 +136,23 @@ function Addp()
 
 function load()
 {
+    if(localStorage.getItem("version")==undefined || localStorage.getItem("version")!=current_version || localStorage.length<=1) 
+    {
+        alert("[2.2]\
+        \n - Данные сохраняются\
+        \n - У ролей есть цвета\
+        \n - Переключение вида \"ИГРОКИ/РОЛИ\"\
+        \n[2.3]\
+        \n - Клик по игроку, чтобы зачеркнуть его\n(выгнали/убили)\
+        \n - Текст в списке не должен выделяться\
+        \n[2.4]\
+        \n - Счётчики для числовых полей\
+        \n - Можно переименовать роли\n(стереть чтоб востановить стандартное имя роли)\
+        \n - Переключение [вкл/выкл] роль\n(теперь и по нажатию на текст, а не только по чекбоксах)\
+        ");
+    }
+    localStorage.setItem("version", current_version);
+
     if(localStorage.getItem("values")!=undefined)
     {
         let str = localStorage.getItem("values");
@@ -145,10 +165,69 @@ function load()
         if(str[6]=='1') document.getElementById("7").checked=true;
         if(str[7]=='1') document.getElementById("8").checked=true;
     }
+
+    if(localStorage.getItem("n1")!=undefined && localStorage.getItem("n1")!="" && localStorage.getItem("n1")!=getdflt("1")) { 
+        document.getElementById("f1").textContent=localStorage.getItem("n1");
+        document.getElementById("n1").value=document.getElementById("f1").textContent;
+    }
+    else document.getElementById("f1").textContent=getdflt("1");
+
+    if(localStorage.getItem("n2")!=undefined && localStorage.getItem("n2")!="" && localStorage.getItem("n2")!=getdflt("2")) { 
+        document.getElementById("f2").textContent=localStorage.getItem("n2");
+        document.getElementById("n2").value=document.getElementById("f2").textContent;
+    }
+    else document.getElementById("f2").textContent=getdflt("2");
+
+    if(localStorage.getItem("n3")!=undefined && localStorage.getItem("n3")!="" && localStorage.getItem("n3")!=getdflt("3")) { 
+        document.getElementById("f3").textContent=localStorage.getItem("n3");
+        document.getElementById("n3").value=document.getElementById("f3").textContent;
+    }
+    else document.getElementById("f3").textContent=getdflt("3");
+
+    if(localStorage.getItem("n4")!=undefined && localStorage.getItem("n4")!="" && localStorage.getItem("n4")!=getdflt("4")) { 
+        document.getElementById("f4").textContent=localStorage.getItem("n4");
+        document.getElementById("n4").value=document.getElementById("f4").textContent;
+    }
+    else document.getElementById("f4").textContent=getdflt("4");
+
+    if(localStorage.getItem("n5")!=undefined && localStorage.getItem("n5")!="" && localStorage.getItem("n5")!=getdflt("5")) { 
+        document.getElementById("f5").textContent=localStorage.getItem("n5");
+        document.getElementById("n5").value=document.getElementById("f5").textContent;
+    }
+    else document.getElementById("f5").textContent=getdflt("5");
+
+    if(localStorage.getItem("n6")!=undefined && localStorage.getItem("n6")!="" && localStorage.getItem("n6")!=getdflt("6")) { 
+        document.getElementById("f6").textContent=localStorage.getItem("n6");
+        document.getElementById("n6").value=document.getElementById("f6").textContent;
+    }
+    else document.getElementById("f6").textContent=getdflt("6");
+
+    if(localStorage.getItem("n7")!=undefined && localStorage.getItem("n7")!="" && localStorage.getItem("n7")!=getdflt("7")) { 
+        document.getElementById("f7").textContent=localStorage.getItem("n7");
+        document.getElementById("n7").value=document.getElementById("f7").textContent;
+    }
+    else document.getElementById("f7").textContent=getdflt("7");
+
+    if(localStorage.getItem("n8")!=undefined && localStorage.getItem("n8")!="" && localStorage.getItem("n8")!=getdflt("8")) { 
+        document.getElementById("f8").textContent=localStorage.getItem("n8");
+        document.getElementById("n8").value=document.getElementById("f8").textContent;
+    }
+    else document.getElementById("f8").textContent=getdflt("8");
+
+    if(localStorage.getItem("n9")!=undefined && localStorage.getItem("n9")!="" && localStorage.getItem("n9")!=getdflt("9")){ 
+        document.getElementById("f9").textContent=localStorage.getItem("n9");
+        document.getElementById("n9").value=document.getElementById("f9").textContent;
+    }
+    else document.getElementById("f9").textContent=getdflt("9");
+
+    if(localStorage.getItem("n10")!=undefined && localStorage.getItem("n10")!="" && localStorage.getItem("n10")!=getdflt("10")) { 
+        document.getElementById("f10").textContent=localStorage.getItem("n10");
+        document.getElementById("n10").value=document.getElementById("f10").textContent;
+    }
+    else document.getElementById("f10").textContent=getdflt("10");
+
     if(localStorage.getItem("mafcount")!=undefined) document.getElementById("mafc").value = localStorage.getItem("mafcount");
     if(localStorage.getItem("playerscount")!=undefined) document.getElementById("count").value = localStorage.getItem("playerscount");
-
-    if(localStorage.length<=0) alert("[2.2] Была обновОчка\n - Данные сохраняются\n - У ролей есть цвета\n - Переключение вида \"ИГРОКИ/РОЛИ\"\n\n[2.3] Была обновОчка\n - Клик по игроку, чтобы зачеркнуть (выгнали/убили)\n - Текст в списке не должен выделяться");
 
     if(localStorage.length<=4) 
     {
@@ -187,14 +266,14 @@ function load()
         input = document.createElement("div");
         input.textContent=localStorage.getItem("p"+i);
         input.readOnly=true;
-        if(input.textContent=="МАФИЯ" || input.textContent=="ДОН") input.style.backgroundColor="#b4b4b4";
-        if(input.textContent=="ДОКТОР") input.style.backgroundColor="#8cc78f";
-        if(input.textContent=="ПУТАНА") input.style.backgroundColor="#fd8dbb";
-        if(input.textContent=="ШЕРИФ") input.style.backgroundColor="#9ac3e4";
-        if(input.textContent=="ЖУРНАЛИСТ") input.style.backgroundColor="#86e9f7";
-        if(input.textContent=="МАНЬЯК") input.style.backgroundColor="#d18775";
-        if(input.textContent=="1ЕКСТРА1") input.style.backgroundColor="#d89dff";
-        if(input.textContent=="2ЕКСТРА2") input.style.backgroundColor="#fffd9f";
+        if(input.textContent==document.getElementById("f10").textContent || input.textContent==document.getElementById("f4").textContent) input.style.backgroundColor="#b4b4b4";
+        if(input.textContent==document.getElementById("f1").textContent) input.style.backgroundColor="#fd8dbb"; // Путана
+        if(input.textContent==document.getElementById("f2").textContent) input.style.backgroundColor="#8cc78f"; //ДОКТОР
+        if(input.textContent==document.getElementById("f3").textContent) input.style.backgroundColor="#9ac3e4"; //ШЕРИФ
+        if(input.textContent==document.getElementById("f5").textContent) input.style.backgroundColor="#d18775"; //МАНЬЯК
+        if(input.textContent==document.getElementById("f6").textContent) input.style.backgroundColor="#86e9f7"; //ЖУРНАЛИСТ
+        if(input.textContent==document.getElementById("f7").textContent) input.style.backgroundColor="#d89dff"; //1ЕКСТРА1
+        if(input.textContent==document.getElementById("f8").textContent) input.style.backgroundColor="#fffd9f"; //2ЕКСТРА2
         input.style.cursor='pointer'
         input.className='unselectable';
         input.addEventListener("click", function()
@@ -206,17 +285,18 @@ function load()
         })
         div.appendChild(input);
     }
-    if(localStorage.getItem("version")!="2.3") 
-    {
-        alert("[2.3] Была обновОчка\n - Клик по игроку, чтобы зачеркнуть (выгнали/убили)\n - Текст в списке не должен выделяться");
-    }
-    localStorage.setItem("version", "2.3");
+}
+
+function checkedbydiv(i)
+{
+    document.getElementById(i).checked = (document.getElementById(i).checked == true) ? false : true;
+    updatevalues();
 }
 
 function clear()
 {
     localStorage.clear();
-    localStorage.setItem("version", "2.3");
+    localStorage.setItem("version", current_version);
     while (document.getElementById("list").firstChild) 
     {
         document.getElementById("list").removeChild(document.getElementById("list").firstChild);
@@ -234,7 +314,39 @@ function updatevalues()
     if(document.getElementById("6").checked==true) str+='1'; else str+='0';
     if(document.getElementById("7").checked==true) str+='1'; else str+='0';
     if(document.getElementById("8").checked==true) str+='1'; else str+='0';
+
     localStorage.setItem("values", str);
     localStorage.setItem("mafcount",  document.getElementById("mafc").value);
     localStorage.setItem("playerscount", document.getElementById("count").value);
+}
+
+function getdflt(i)
+{
+    switch(i)
+    {
+        case '1': return "ПУТАНА"
+        case '2': return "ДОКТОР"
+        case '3': return "ШЕРИФ"
+        case '4': return "ДОН"
+        case '5': return "МАНЬЯК"
+        case '6': return "ЖУРНАЛИСТ"
+        case '7': return "1ЕКСТРА1"
+        case '8': return "1ЕКСТРА1"
+        case '9': return "мирный"
+        case '10': return "МАФИЯ"
+    }
+}
+
+function updaterolesnames(i)
+{
+    if(document.getElementById("n"+i).value=="") 
+    {
+        document.getElementById("f"+i).textContent=getdflt(i);
+        localStorage.setItem("n"+i, document.getElementById("f"+i).textContent);
+    }
+    else
+    {
+        document.getElementById("f"+i).textContent=document.getElementById("n"+i).value;
+        localStorage.setItem("n"+i, document.getElementById("f"+i).textContent);
+    }
 }

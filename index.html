@@ -4,27 +4,40 @@
     <meta name="viewport" content="width=device-width">
     <link href="style.css" rel="stylesheet">
     <meta charset="utf-8"/> 
-    <title>Генератор (v2.3)</title>
+    <title>Генератор (v2.4)</title>
     <script src="main.js"></script>
 </head>
 <body onload="load()" >
     <nav>
-        <input placeholder="Кол-во игроков" oninput="updatevalues()" id="count">
-        <input placeholder="Кол-во мафий" oninput="updatevalues()" id="mafc">
-        <button id='hide' onclick="Hide()" style="margin-top: 1rem; font-size: 1.2rem; background-color: yellow; outline: none;">ИГРОКИ</button>
-        <button id='btn' onclick="Addp()" style="margin-top: 1rem; font-size: 1.2rem; background-color: yellow; outline: none;">РАНДОМ</button>
+        <input type="number" step="1" min="2" autocomplete="off" placeholder="Кол-во игроков" oninput="updatevalues()" id="count">
+        <input type="number" step="1" min="1" autocomplete="off" placeholder="Кол-во мафий" oninput="updatevalues()" id="mafc">
+        <button id='hide' onclick="Hide()" style="cursor: pointer; margin-top: 1rem; font-size: 1.2rem; background-color: yellow; outline: none;">ИГРОКИ</button>
+        <button id='btn' onclick="Addp()" style="cursor: pointer; margin-top: 1rem; font-size: 1.2rem; background-color: yellow; outline: none;">РАНДОМ</button>
     </nav>
     <main>
         <div id="list" class='unselectable'></div>
         <div id="roles">
-            <input onchange="updatevalues()" type="checkbox" id='1'><div>Путана</div>
-            <input onchange="updatevalues()" type="checkbox" id='2'><div>Доктор</div>
-            <input onchange="updatevalues()" type="checkbox" id='3'><div>Шериф</div>
-            <input onchange="updatevalues()" type="checkbox" id='4'><div>Дон</div>
-            <input onchange="updatevalues()" type="checkbox" id='5'><div>Маньяк</div>
-            <input onchange="updatevalues()" type="checkbox" id='6'><div>Журналист</div>
-            <input onchange="updatevalues()" type="checkbox" id='7'><div>1ЕКСТРА1</div>
-            <input onchange="updatevalues()" type="checkbox" id='8'><div>2ЕКСТРА2</div>
+            <input style="transform:scale(1.5);" onchange="updatevalues()" type="checkbox" id='1'><div id="f1" style="cursor: pointer;" onclick="checkedbydiv('1')">Путана</div>
+            <input placeholder="ПУТАНА" autocomplete="off" oninput="updaterolesnames('1')" id="n1">
+            <input style="transform:scale(1.5);" onchange="updatevalues()" type="checkbox" id='2'><div id="f2" style="cursor: pointer;" onclick="checkedbydiv('2')">Доктор</div>
+            <input placeholder="ДОКТОР" autocomplete="off" oninput="updaterolesnames('2')" id="n2">
+            <input style="transform:scale(1.5);" onchange="updatevalues()" type="checkbox" id='3'><div id="f3" style="cursor: pointer;" onclick="checkedbydiv('3')">Шериф</div>
+            <input placeholder="ШЕРИФ" autocomplete="off" oninput="updaterolesnames('3')" id="n3">
+            <input style="transform:scale(1.5);" onchange="updatevalues()" type="checkbox" id='4'><div id="f4" style="cursor: pointer;" onclick="checkedbydiv('4')">Дон</div>
+            <input placeholder="ДОН" autocomplete="off" oninput="updaterolesnames('4')" id="n4">
+            <input style="transform:scale(1.5);" onchange="updatevalues()" type="checkbox" id='5'><div id="f5" style="cursor: pointer;" onclick="checkedbydiv('5')">Маньяк</div>
+            <input placeholder="МАНЬЯК" autocomplete="off" oninput="updaterolesnames('5')" id="n5">
+            <input style="transform:scale(1.5);" onchange="updatevalues()" type="checkbox" id='6'><div id="f6" style="cursor: pointer;" onclick="checkedbydiv('6')">Журналист</div>
+            <input placeholder="ЖУРНАЛИСТ" autocomplete="off" oninput="updaterolesnames('6')" id="n6">
+            <input style="transform:scale(1.5);" onchange="updatevalues()" type="checkbox" id='7'><div id="f7" style="cursor: pointer;" onclick="checkedbydiv('7')">1ЕКСТРА1</div>
+            <input placeholder="1ЕКСТРА1" autocomplete="off" oninput="updaterolesnames('7')" id="n7">
+            <input style="transform:scale(1.5);" onchange="updatevalues()" type="checkbox" id='8'><div id="f8" style="cursor: pointer;" onclick="checkedbydiv('8')">2ЕКСТРА2</div>
+            <input placeholder="2ЕКСТРА2" autocomplete="off" oninput="updaterolesnames('8')" id="n8">
+
+            <div></div><div id="f9" style="cursor: pointer;">мирный</div>
+            <input placeholder="мирный" autocomplete="off" oninput="updaterolesnames('9')" id="n9">
+            <div></div><div id="f10" style="cursor: pointer;">МАФИЯ</div>
+            <input placeholder="МАФИЯ" autocomplete="off" oninput="updaterolesnames('10')" id="n10">
         </div>
     </main>
 </body>

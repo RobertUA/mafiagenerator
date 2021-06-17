@@ -5,7 +5,7 @@ body
 nav
 {
     display: grid;
-    grid-template-columns: minmax(9.25rem, 20%) minmax(9.25rem, 20%);
+    grid-template-columns: minmax(12rem, 20%) minmax(12rem, 20%);
     background-color: gray;
 }
 .row
@@ -28,7 +28,7 @@ main
     align-items: center;
     font-size: 1.5rem;
     display: grid;
-    grid-template-columns: 1rem minmax(11rem, 15rem) minmax(11rem, 15rem);
+    grid-template-columns: 1rem minmax(11.5rem, 14.5rem) minmax(11.5rem, 14.5rem);
     grid-auto-rows: 2rem;
     
     -webkit-touch-callout: none; /* iOS Safari */
@@ -42,7 +42,7 @@ main
 #list
 {
     display: grid;
-    min-width: 18.5rem;
+    min-width: 24rem;
     max-width: 40%;
     grid-template-rows: auto;
     max-height: 30rem;

@@ -1,7 +1,8 @@
 body
 {
     background-color: gray;
-    margin: 4px 4px 4px 4px;
+    margin: 4px;
+    position: relative;
 }
 nav
 {
@@ -33,7 +34,7 @@ main
     align-items: center;
     font-size: 1.25rem;
     display: grid;
-    grid-template-columns: 1rem minmax(11.5rem, 14.5rem) minmax(11.5rem, 14.5rem);
+    grid-template-columns: 1rem 11.5rem 11.5rem;
     grid-auto-rows: 2rem;
     
     -webkit-touch-callout: none; /* iOS Safari */

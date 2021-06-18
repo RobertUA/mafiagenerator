@@ -1,7 +1,6 @@
 body
 {
     background-color: gray;
-    margin-right: 1rem;
 }
 nav
 {
@@ -50,7 +49,7 @@ main
     min-width: 24rem;
     max-width: 40%;
     grid-template-rows: auto;
-    max-height: 30rem;
+    max-height: 34rem;
     overflow: auto;
 }
 input
@@ -66,7 +65,28 @@ input
     background-color: whitesmoke;
     font-size: 1.5rem;
     outline: none;
-
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version, currently not supported by any browser */
+    -khtml-user-select: none;    /* KHTML browsers (e.g. Konqueror) */
+}
+footer
+{
+    font-size: 1.2rem;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    position: fixed; /* Фиксированное положение */
+    text-align: center;
+    left: 0;
+    bottom: 0;
+    padding: 1rem; /* Поля вокруг текста */
+    background: #363636; /* Цвет фона */
+    color: #fff; /* Цвет текста */
+    /*width: 100%;*/
+    right: 0;
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none;   /* Chrome/Safari/Opera */
     -khtml-user-select: none;    /* Konqueror */

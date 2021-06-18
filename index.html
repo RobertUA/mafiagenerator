@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="ru">
   <head>
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width+1rem, initial-scale=1">
     <link href="style.css" rel="stylesheet">
     <meta charset="utf-8"/> 
     <title>Генератор (v2.4)</title>
@@ -38,11 +38,13 @@
             <input style="transform:scale(1.2);" onchange="updatevalues()" type="checkbox" id='10'><div id="f10" style="cursor: pointer;" onclick="checkedbydiv('10')">4ЕКСТРА4</div>
             <input maxlength = "16" placeholder="4ЕКСТРА4" autocomplete="off" oninput="updaterolesnames('10')" id="n10">
 
-            <div></div><div id="f11" style="cursor: pointer;">мирный</div>
+            <div></div><div id="f11" style="cursor: default;">мирный</div>
             <input placeholder="мирный" autocomplete="off" oninput="updaterolesnames('11')" id="n11">
-            <div></div><div id="f12" style="cursor: pointer;">МАФИЯ</div>
+            <div></div><div id="f12" style="cursor: default;">МАФИЯ</div>
             <input placeholder="МАФИЯ" autocomplete="off" oninput="updaterolesnames('12')" id="n12">
         </div>
-    </main>
+    <footer>
+        <div style="text-align: start;">v2.4</div><div style="text-align: end;">&copy; Робік</div>
+    </footer>
 </body>
 </html>

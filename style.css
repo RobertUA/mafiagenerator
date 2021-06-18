@@ -67,6 +67,7 @@ input
     background-color: whitesmoke;
     font-size: 1.5rem;
     outline: none;
+    
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none;   /* Chrome/Safari/Opera */
     -khtml-user-select: none;    /* Konqueror */
@@ -84,4 +85,12 @@ input
     font-style: italic;
     font-weight: 900;
     margin-top: 1.5rem;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version, currently not supported by any browser */
+    -khtml-user-select: none;    /* KHTML browsers (e.g. Konqueror) */
 }

@@ -156,6 +156,7 @@ function load()
         ");
     }
     localStorage.setItem("version", current_version);
+    document.getElementById("cop").textContent="v"+current_version+" © Робік"
 
     if(localStorage.getItem("values")!=undefined)
     {

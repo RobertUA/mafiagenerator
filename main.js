@@ -302,6 +302,7 @@ function load()
             t.style.backgroundColor = (t.style.backgroundColor == '') ? 'red' : '';
             this.style.textDecoration = (this.style.textDecoration == 'line-through') ? 'none' : 'line-through';
             this.style.color = (this.style.color == 'red') ? 'black' : 'red';
+            // this.style.fontStyle = (this.style.fontStyle == 'italic') ? 'normal' : 'italic';
         })
         div.appendChild(input);
     }

@@ -9,10 +9,19 @@
 </head>
 <body onload="load()" >
     <nav>
-        <input type="number" step="1" min="2" autocomplete="off" placeholder="Кол-во игроков" oninput="updatevalues()" id="count">
-        <input type="number" step="1" min="1" autocomplete="off" placeholder="Кол-во мафий" oninput="updatevalues()" id="mafc">
-        <button id='hide' onclick="Hide()" style="cursor: pointer; margin-top: 1rem; font-size: 1.5rem; background-color: yellow; outline: none;">ИГРОКИ</button>
-        <button id='btn' onclick="Addp()" style="cursor: pointer; margin-top: 1rem; font-size: 1.5rem; background-color: yellow; outline: none;">РАНДОМ</button>
+        <div class="numinp">
+            <input type="number" step="1" min="2" autocomplete="off" placeholder="Кол-во игроков" oninput="updatevalues()" id="count">
+            <input type="number" step="1" min="1" autocomplete="off" placeholder="Кол-во мафий" oninput="updatevalues()" id="mafc">
+        </div>
+        <button id='btn' onclick="Addp()" style="cursor: pointer; padding: 0.5rem; margin-top: 1rem; font-size: 1.5rem; background-color: orange; outline: none;">РАНДОМ</button>
+        <div class="tabs">
+            <button id='hide1' onclick="Hide(2)">
+                Роли</button>
+            <button id='hide2' onclick="Hide(1)">
+                Игроки</button>
+            <button id='hide3' onclick="Hide(3)">
+                Таблица</button>
+        </div>        
     </nav>
     <main>
         <div id="list" class='unselectable'></div>

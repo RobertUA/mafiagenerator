@@ -204,13 +204,13 @@ function Addp()
                 localStorage.setItem("tv"+i, 0);
             }
             localStorage.setItem("countroles", rl.length+1)
-            document.getElementById("gtable").style.gridTemplateColumns="3rem" + (" auto").repeat(rl.length+1);
+            document.getElementById("gtable").style.gridTemplateColumns=("auto").repeat(rl.length);
 
-            div = document.createElement("div");
-            div.textContent="№";
-            div.className="vert"
-            div.id="nm";
-            document.getElementById("gtable").appendChild(div);
+            // div = document.createElement("div");
+            // div.textContent="№";
+            // div.className="vert"
+            // div.id="nm";
+            // document.getElementById("gtable").appendChild(div);
 
             for (let j=0;j<rl.length+1;j++)
             {
@@ -222,9 +222,9 @@ function Addp()
 
             for(let i=0;i<players.length;i++)
             {
-                div = document.createElement("div");
-                div.textContent=i+1;
-                document.getElementById("gtable").appendChild(div);
+                // div = document.createElement("div");
+                // div.textContent=i+1;
+                // document.getElementById("gtable").appendChild(div);
                 for (let j=0;j<rl.length+1;j++)
                 {
                     div = document.createElement("div");
@@ -236,14 +236,14 @@ function Addp()
                         {
                             localStorage.setItem("tv"+this.className.split(" ")[1], "0")
                             this.style.backgroundColor='whitesmoke';
-                            this.style.color='whitesmoke';
+                            this.style.color='gray';
                         }
                         else 
                         {
                             for (let k=0; k<document.getElementsByClassName(this.className).length;k++)
                             {
                                 document.getElementsByClassName(this.className)[k].style.backgroundColor='whitesmoke';
-                                document.getElementsByClassName(this.className)[k].style.color='whitesmoke';
+                                document.getElementsByClassName(this.className)[k].style.color='gray';
                             }
                             localStorage.setItem("tv"+this.className.split(" ")[1], this.textContent)
                             this.style.backgroundColor='red';
@@ -291,13 +291,13 @@ function load()
     // }
     if(localStorage.getItem("countroles")!=undefined)
     {
-        document.getElementById("gtable").style.gridTemplateColumns="3rem" + (" auto").repeat(localStorage.getItem("countroles"));
+        document.getElementById("gtable").style.gridTemplateColumns=(" auto").repeat(localStorage.getItem("countroles"));
 
-        div = document.createElement("div");
-        div.textContent="№";
-        div.className="vert"
-        div.id="nm";
-        document.getElementById("gtable").appendChild(div);
+        // div = document.createElement("div");
+        // div.textContent="№";
+        // div.className="vert"
+        // div.id="nm";
+        // document.getElementById("gtable").appendChild(div);
 
         for (let j=0;j<localStorage.getItem("countroles");j++)
         {
@@ -309,9 +309,9 @@ function load()
 
         for(let i=0;i<localStorage.getItem("playerscount");i++)
         {
-            div = document.createElement("div");
-            div.textContent=i+1;
-            document.getElementById("gtable").appendChild(div);
+            // div = document.createElement("div");
+            // div.textContent=i+1;
+            // document.getElementById("gtable").appendChild(div);
             for (let j=0;j<localStorage.getItem("countroles");j++)
             {
                 div = document.createElement("div");
@@ -328,14 +328,14 @@ function load()
                     {
                         localStorage.setItem("tv"+this.className.split(" ")[1], "0");
                         this.style.backgroundColor='whitesmoke';
-                        this.style.color='whitesmoke';
+                        this.style.color='gray';
                     }
                     else 
                     {
                         for (let k=0; k<document.getElementsByClassName(this.className).length;k++)
                         {
                             document.getElementsByClassName(this.className)[k].style.backgroundColor='whitesmoke';
-                            document.getElementsByClassName(this.className)[k].style.color='whitesmoke';
+                            document.getElementsByClassName(this.className)[k].style.color='gray';
                         }
                         localStorage.setItem("tv"+this.className.split(" ")[1], this.textContent)
                         this.style.backgroundColor='red';

@@ -2,8 +2,8 @@ let count;
 let rl=[]
 let players=[];
 
-current_version="2.4"
-
+current_version="2.5"
+/*
 function Hide()
 {
     if(document.getElementById("list").style.display == "none") 
@@ -13,12 +13,44 @@ function Hide()
         document.getElementById("hide").textContent = "РОЛИ"
         localStorage.setItem("hide", 0);
     }
-    else
+    else if()
     {
         document.getElementById("list").style.display = "none";
         document.getElementById("roles").style.display = "grid";
         document.getElementById("hide").textContent = "ИГРОКИ"
         localStorage.setItem("hide", 1);
+    }
+    else 
+    {
+        
+    }
+}
+*/
+function Hide()
+{
+    if(document.getElementById("gtable").style.display == "grid") 
+    {
+        document.getElementById("list").style.display = "block";
+        document.getElementById("roles").style.display = "none";
+        document.getElementById("gtable").style.display = "none";
+        document.getElementById("hide").textContent = "РОЛИ"
+        localStorage.setItem("hide", 0);
+    }
+    else if(document.getElementById("list").style.display == "block")
+    {
+        document.getElementById("list").style.display = "none";
+        document.getElementById("gtable").style.display = "none";
+        document.getElementById("roles").style.display = "grid";
+        document.getElementById("hide").textContent = "ИГРОКИ"
+        localStorage.setItem("hide", 1);
+    }
+    else 
+    {
+        document.getElementById("list").style.display = "none";
+        document.getElementById("gtable").style.display = "grid";
+        document.getElementById("roles").style.display = "none";
+        document.getElementById("hide").textContent = "ТАБЛИЦА"
+        localStorage.setItem("hide", 2);
     }
 }
 
@@ -42,6 +74,7 @@ function Addp()
         document.getElementById("list").style.display = "block";
         document.getElementById("hide").textContent = "РОЛИ";
         document.getElementById("roles").style.display = "none";
+        document.getElementById("gtable").style.display = "none";
     }
 
     document.getElementById("btn").disabled = true;
@@ -79,9 +112,12 @@ function Addp()
     http.onreadystatechange = function() 
     {
         clear();
-        if(document.getElementById("list").style.display == "none") localStorage.setItem("hide", 1);
-        else localStorage.setItem("hide", 0);
 
+        if(document.getElementById("list").style.display == "block") localStorage.setItem("hide", 0);
+        else if (document.getElementById("roles").style.display == "grid") localStorage.setItem("hide", 1);
+        else localStorage.setItem("hide", 2);
+
+        document.getElementById("gtable").innerHTML="";
         document.getElementById("btn").disabled = false;
         document.getElementById("hide").disabled = false;
         if (this.readyState == 4 && this.status == 200) 
@@ -119,12 +155,25 @@ function Addp()
                 if(input.textContent==document.getElementById("f10").textContent) input.style.backgroundColor="#6c9c98"; //4ЕКСТРА4
                 input.readOnly=true;
                 input.style.cursor='pointer'
+                input.className='unselectable ' + i;
                 input.addEventListener("click", function()
                 {
                     var t = this.previousSibling;
-                    t.style.backgroundColor = (t.style.backgroundColor == '') ? 'red' : '';
-                    this.style.textDecoration = (this.style.textDecoration == 'line-through') ? 'none' : 'line-through';
-                    this.style.color = (this.style.color == 'red') ? 'black' : 'red';
+                    if(this.style.textDecoration == "line-through")
+                    {
+                        t.style.backgroundColor = "";
+                        this.style.textDecoration = "none";
+                        this.style.color = "black";
+                        localStorage.setItem("IA"+this.className.split(" ")[1], "1");
+                    }
+                    else 
+                    {
+                        t.style.backgroundColor = "red";
+                        this.style.textDecoration = "line-through";
+                        this.style.color = "red";
+                        localStorage.setItem("IA"+this.className.split(" ")[1], "0");
+                    }
+                    // this.style.fontStyle = (this.style.fontStyle == 'italic') ? 'normal' : 'italic';
                 })
                 div.appendChild(input);
             }
@@ -132,6 +181,81 @@ function Addp()
             {
                 localStorage.setItem("p"+i,players[i]);
             }
+            //
+            rl = []
+            if(document.getElementById("1").checked==true) rl.push(document.getElementById("f1").textContent);
+            if(document.getElementById("2").checked==true) rl.push(document.getElementById("f2").textContent);
+            if(document.getElementById("3").checked==true) rl.push(document.getElementById("f3").textContent);
+            if(document.getElementById("4").checked==true) rl.push(document.getElementById("f4").textContent);
+            if(document.getElementById("5").checked==true) rl.push(document.getElementById("f5").textContent);
+            if(document.getElementById("6").checked==true) rl.push(document.getElementById("f6").textContent);
+            if(document.getElementById("7").checked==true) rl.push(document.getElementById("f7").textContent);
+            if(document.getElementById("8").checked==true) rl.push(document.getElementById("f8").textContent);
+            if(document.getElementById("9").checked==true) rl.push(document.getElementById("f9").textContent);
+            if(document.getElementById("10").checked==true) rl.push(document.getElementById("f10").textContent);
+            //
+
+            localStorage.setItem("tn"+0, document.getElementById("f12").textContent);
+            localStorage.setItem("tv"+0, 0);
+            
+            for(let i=1;i<rl.length+1;i++)
+            {
+                localStorage.setItem("tn"+i, rl[i-1]);
+                localStorage.setItem("tv"+i, 0);
+            }
+            localStorage.setItem("countroles", rl.length+1)
+            document.getElementById("gtable").style.gridTemplateColumns="3rem" + (" auto").repeat(rl.length+1);
+
+            div = document.createElement("div");
+            div.textContent="№";
+            div.className="vert"
+            div.id="nm";
+            document.getElementById("gtable").appendChild(div);
+
+            for (let j=0;j<rl.length+1;j++)
+            {
+                div = document.createElement("div");
+                div.className="vert"
+                div.textContent=localStorage.getItem("tn"+j);
+                document.getElementById("gtable").appendChild(div);
+            }
+
+            for(let i=0;i<players.length;i++)
+            {
+                div = document.createElement("div");
+                div.textContent=i+1;
+                document.getElementById("gtable").appendChild(div);
+                for (let j=0;j<rl.length+1;j++)
+                {
+                    div = document.createElement("div");
+                    div.className="cell "+j;
+                    div.textContent=i+1;
+                    div.addEventListener("click", function()
+                    {
+                        if(this.style.backgroundColor == 'red')
+                        {
+                            localStorage.setItem("tv"+this.className.split(" ")[1], "0")
+                            this.style.backgroundColor='whitesmoke';
+                            this.style.color='whitesmoke';
+                        }
+                        else 
+                        {
+                            for (let k=0; k<document.getElementsByClassName(this.className).length;k++)
+                            {
+                                document.getElementsByClassName(this.className)[k].style.backgroundColor='whitesmoke';
+                                document.getElementsByClassName(this.className)[k].style.color='whitesmoke';
+                            }
+                            localStorage.setItem("tv"+this.className.split(" ")[1], this.textContent)
+                            this.style.backgroundColor='red';
+                            this.style.color='black';
+                        }
+                        // this.style.backgroundColor = (this.style.backgroundColor == 'red') ? 'whitesmoke' : 'red';
+                        // this.style.color = (this.style.color == 'red') ? 'whitesmoke' : 'red';
+                    })
+                    document.getElementById("gtable").appendChild(div);
+                }
+            }
+
             for(let i=1; i<=12;i++) updaterolesnames(""+i);
             updatevalues();
         }
@@ -142,7 +266,10 @@ function load()
 {
     if(localStorage.getItem("version")==undefined || localStorage.getItem("version")!=current_version || localStorage.length<=1) 
     {
-        alert("[2.4 NEW]\
+        alert("[2.5 NEW]\
+        \n - Новая вкладка \"ТАБЛИЦА\" (табличка для ведения игры)\
+        \n - Больше данных сохраняется\
+        \n[2.4]\
         \n - Числовые поля теперь числовые :)\
         \n - Можно переименовать роли (стереть чтоб востановить стандартное имя роли)\
         \n - Переключение [вкл/выкл] роль (теперь и по нажатию на текст, а не только по чекбоксах)\
@@ -157,7 +284,72 @@ function load()
     }
     localStorage.setItem("version", current_version);
     document.getElementById("cop").textContent="v"+current_version+" © Робік"
+    
+    // for(let i=0;i<localStorage.getItem("playerscount");i++)
+    // {
 
+    // }
+    if(localStorage.getItem("countroles")!=undefined)
+    {
+        document.getElementById("gtable").style.gridTemplateColumns="3rem" + (" auto").repeat(localStorage.getItem("countroles"));
+
+        div = document.createElement("div");
+        div.textContent="№";
+        div.className="vert"
+        div.id="nm";
+        document.getElementById("gtable").appendChild(div);
+
+        for (let j=0;j<localStorage.getItem("countroles");j++)
+        {
+            div = document.createElement("div");
+            div.className="vert"
+            div.textContent=localStorage.getItem("tn"+j);
+            document.getElementById("gtable").appendChild(div);
+        }
+
+        for(let i=0;i<localStorage.getItem("playerscount");i++)
+        {
+            div = document.createElement("div");
+            div.textContent=i+1;
+            document.getElementById("gtable").appendChild(div);
+            for (let j=0;j<localStorage.getItem("countroles");j++)
+            {
+                div = document.createElement("div");
+                div.className="cell "+j;
+                div.textContent=i+1;
+                if(localStorage.getItem("tv"+j)==i+1)
+                {
+                    div.style.backgroundColor='red';
+                    div.style.color='black';
+                }
+                div.addEventListener("click", function()
+                {
+                    if(this.style.backgroundColor == 'red')
+                    {
+                        localStorage.setItem("tv"+this.className.split(" ")[1], "0");
+                        this.style.backgroundColor='whitesmoke';
+                        this.style.color='whitesmoke';
+                    }
+                    else 
+                    {
+                        for (let k=0; k<document.getElementsByClassName(this.className).length;k++)
+                        {
+                            document.getElementsByClassName(this.className)[k].style.backgroundColor='whitesmoke';
+                            document.getElementsByClassName(this.className)[k].style.color='whitesmoke';
+                        }
+                        localStorage.setItem("tv"+this.className.split(" ")[1], this.textContent)
+                        this.style.backgroundColor='red';
+                        this.style.color='black';
+                    }
+                    // this.style.backgroundColor = (this.style.backgroundColor == 'red') ? 'whitesmoke' : 'red';
+                    // this.style.color = (this.style.color == 'red') ? 'whitesmoke' : 'red';
+                })
+                document.getElementById("gtable").appendChild(div);
+            }
+        }
+    }
+    
+    
     if(localStorage.getItem("values")!=undefined)
     {
         let str = localStorage.getItem("values");
@@ -261,13 +453,22 @@ function load()
     {
         document.getElementById("list").style.display = "block";
         document.getElementById("roles").style.display = "none";
+        document.getElementById("gtable").style.display = "none";
         document.getElementById("hide").textContent = "РОЛИ"
     }
-    else 
+    else if(localStorage.getItem('hide') == 1)
     {
         document.getElementById("list").style.display = "none";
         document.getElementById("roles").style.display = "grid";
+        document.getElementById("gtable").style.display = "none";
         document.getElementById("hide").textContent = "ИГРОКИ"
+    }
+    else
+    {
+        document.getElementById("list").style.display = "none";
+        document.getElementById("roles").style.display = "none";
+        document.getElementById("gtable").style.display = "grid";
+        document.getElementById("hide").textContent = "ТАБЛИЦА"
     }
 
     let count = 0;
@@ -280,7 +481,9 @@ function load()
         let input = document.createElement("div");
         input.textContent=count;
         input.readOnly=true;
-        input.className='unselectable';
+        
+        let t = input;
+
         div.appendChild(input);
         input = document.createElement("div");
         input.textContent=localStorage.getItem("p"+i);
@@ -296,13 +499,40 @@ function load()
         if(input.textContent==document.getElementById("f9").textContent) input.style.backgroundColor="#c8f54c"; //3ЕКСТРА3
         if(input.textContent==document.getElementById("f10").textContent) input.style.backgroundColor="#6c9c98"; //4ЕКСТРА4
         input.style.cursor='pointer'
-        input.className='unselectable';
+        input.className='unselectable ' + i;
+
+        //
+        if(localStorage.getItem("IA"+i)=="1" || localStorage.getItem("IA"+i)==undefined)
+        {
+            t.style.backgroundColor = "";
+            input.style.textDecoration = "none";
+            input.style.color = "black";
+        }
+        else 
+        {
+            t.style.backgroundColor = "red";
+            input.style.textDecoration = "line-through";
+            input.style.color = "red";
+        }
+        //
+
         input.addEventListener("click", function()
         {
-            var t = this.previousSibling
-            t.style.backgroundColor = (t.style.backgroundColor == '') ? 'red' : '';
-            this.style.textDecoration = (this.style.textDecoration == 'line-through') ? 'none' : 'line-through';
-            this.style.color = (this.style.color == 'red') ? 'black' : 'red';
+            let t = this.previousSibling;
+            if(this.style.textDecoration == "line-through")
+            {
+                t.style.backgroundColor = "";
+                this.style.textDecoration = "none";
+                this.style.color = "black";
+                localStorage.setItem("IA"+this.className.split(" ")[1], "1");
+            }
+            else 
+            {
+                t.style.backgroundColor = "red";
+                this.style.textDecoration = "line-through";
+                this.style.color = "red";
+                localStorage.setItem("IA"+this.className.split(" ")[1], "0");
+            }
             // this.style.fontStyle = (this.style.fontStyle == 'italic') ? 'normal' : 'italic';
         })
         div.appendChild(input);

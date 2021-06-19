@@ -1,5 +1,7 @@
 body
 {
+    min-width: 24rem;
+    max-width: 50%;
     background-color: gray;
     margin: 4px;
     position: relative;
@@ -7,13 +9,13 @@ body
 nav
 {
     display: grid;
-    grid-template-columns: minmax(12rem, 20%) minmax(12rem, 20%);
+    grid-template-columns: minmax(12rem, 50%) minmax(12rem, 50%);
     background-color: gray;
 }
 .row
 {
     display: grid;
-    grid-template-columns: minmax(4rem, 15%) minmax(14rem, 95%);
+    grid-template-columns: minmax(4rem, 15%) minmax(14rem, 85%);
 }
 main
 {
@@ -24,17 +26,24 @@ main
 #roles div
 {
     margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    font-size: 1.25rem;
+    box-sizing: border-box;
 }
 #roles input
 {
+    width: 100%;
     font-size: 1.25rem;
+    box-sizing: border-box;
 }
 #roles
 {
     align-items: center;
     font-size: 1.25rem;
     display: grid;
-    grid-template-columns: 1rem 11.5rem 11.5rem;
+    
+
+    grid-template-columns: 1rem auto auto;
     grid-auto-rows: 2rem;
     
     -webkit-touch-callout: none; /* iOS Safari */
@@ -48,8 +57,6 @@ main
 #list
 {
     display: grid;
-    min-width: 24rem;
-    max-width: 40%;
     grid-template-rows: auto;
     max-height: 34rem;
     overflow: auto;
@@ -62,7 +69,8 @@ input
 }
 .unselectable div
 {
-    margin: 0.5px 0.5px 0.5px 0.5px;
+    /* margin: 0.5px 0.5px 0.5px 0.5px; */
+    padding: 1px;
     border: 0.5px dotted black;
     background-color: whitesmoke;
     font-size: 1.5rem;
@@ -79,8 +87,6 @@ input
 #cop
 {
     text-align: center;
-    min-width: 24rem;
-    max-width: 40%;
     font-size: 1.2rem;
     font-style: italic;
     font-weight: 900;
@@ -93,4 +99,46 @@ input
     -ms-user-select: none;       /* Internet Explorer/Edge */
     user-select: none;           /* Non-prefixed version, currently not supported by any browser */
     -khtml-user-select: none;    /* KHTML browsers (e.g. Konqueror) */
+}
+#gtable
+{
+    font-size: 1.5rem;
+    align-items: center;
+    text-align: right;
+    width: 100%;
+}
+.vert
+{
+    writing-mode: vertical-rl;
+    height: 100%;
+    width: auto;
+    text-align: end;
+}
+/* #nm
+{
+    height: 100%;
+} */
+#gtable div
+{
+    align-items: center;
+    border: 0.5px dotted black;
+    padding: 1px;
+    background-color: whitesmoke;
+    font-size: 1.5rem;
+    outline: none;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version, currently not supported by any browser */
+    -khtml-user-select: none;    /* KHTML browsers (e.g. Konqueror) */
+}
+.cell
+{
+    cursor: pointer;
+    font-weight: 900;
+    color: whitesmoke;
+    background-color: whitesmoke;
 }

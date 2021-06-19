@@ -117,7 +117,6 @@ function Addp()
         else if (document.getElementById("roles").style.display == "grid") localStorage.setItem("hide", 1);
         else localStorage.setItem("hide", 2);
 
-        document.getElementById("gtable").innerHTML="";
         document.getElementById("btn").disabled = false;
         document.getElementById("hide").disabled = false;
         if (this.readyState == 4 && this.status == 200) 
@@ -204,7 +203,10 @@ function Addp()
                 localStorage.setItem("tv"+i, 0);
             }
             localStorage.setItem("countroles", rl.length+1)
-            document.getElementById("gtable").style.gridTemplateColumns=("auto").repeat(rl.length);
+
+            
+            document.getElementById("gtable").innerHTML="";
+            document.getElementById("gtable").style.gridTemplateColumns=(" auto").repeat(rl.length+1);
 
             // div = document.createElement("div");
             // div.textContent="№";

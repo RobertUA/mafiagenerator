@@ -16,13 +16,6 @@ nav
     display: grid;
     grid-template-columns: minmax(4rem, 15%) minmax(14rem, 85%);
 }
-.tabs button
-{
-    cursor: pointer;
-    margin-top: 1rem;
-    font-size: 1.5rem;
-    outline: none;
-}
 main
 {
     margin-top: 1rem;
@@ -159,4 +152,29 @@ input
 {
     display: grid;
     grid-template-columns: minmax(12rem, 50%) minmax(12rem, 50%);
+}
+.tabs button
+{
+    cursor: pointer;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    outline: none;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version, currently not supported by any browser */
+    -khtml-user-select: none;    /* KHTML browsers (e.g. Konqueror) */
+}
+#btn
+{
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version, currently not supported by any browser */
+    -khtml-user-select: none;    /* KHTML browsers (e.g. Konqueror) */
 }

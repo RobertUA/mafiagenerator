@@ -16,11 +16,15 @@ nav
     display: grid;
     grid-template-columns: minmax(4rem, 15%) minmax(14rem, 85%);
 }
+.numinp
+{
+    display: grid;
+    grid-template-columns: minmax(12rem, 50%) minmax(12rem, 50%);
+}
 main
 {
     margin-top: 1rem;
     display: grid;
-    /*grid-template-columns: minmax(16rem,30%) minmax(8.5rem, 30%);*/
 }
 #roles div
 {
@@ -52,13 +56,6 @@ main
     -ms-user-select: none;       /* Internet Explorer/Edge */
     user-select: none;           /* Non-prefixed version, currently not supported by any browser */
     -khtml-user-select: none;    /* KHTML browsers (e.g. Konqueror) */
-}
-#list
-{
-    display: grid;
-    grid-template-rows: auto;
-    max-height: 30rem;
-    overflow: auto;
 }
 input
 {
@@ -101,6 +98,7 @@ input
 }
 #gtable
 {
+    display: grid;
     font-size: 1.5rem;
     align-items: center;
     text-align: right;
@@ -126,7 +124,7 @@ input
     border: 0.5px dotted black;
     padding: 1px;
     background-color: whitesmoke;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     outline: none;
 
     -webkit-touch-callout: none; /* iOS Safari */
@@ -146,17 +144,12 @@ input
 .tabs
 {
     display: grid;
-    grid-template-columns: auto auto auto;
-}
-.numinp
-{
-    display: grid;
-    grid-template-columns: minmax(12rem, 50%) minmax(12rem, 50%);
+    grid-template-columns: auto auto;
 }
 .tabs button
 {
     cursor: pointer;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     font-size: 1.5rem;
     outline: none;
 
@@ -170,6 +163,13 @@ input
 }
 #btn
 {
+    cursor: pointer; 
+    padding: 0.5rem; 
+    margin-top: 0.5rem; 
+    font-size: 1.5rem; 
+    background-color: orange; 
+    outline: none;
+
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none;   /* Chrome/Safari/Opera */
     -khtml-user-select: none;    /* Konqueror */

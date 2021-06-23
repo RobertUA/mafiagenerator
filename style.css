@@ -182,7 +182,7 @@ input
     user-select: none;           /* Non-prefixed version, currently not supported by any browser */
     -khtml-user-select: none;    /* KHTML browsers (e.g. Konqueror) */
 }
-@media only screen and (min-width: 800px) 
+@media only screen and (min-width: 800px) /* >800 (>768) */
 {
     body
     {

@@ -26,10 +26,10 @@ function getrolecolor(role)
     {
         case document.getElementById("f1").textContent: return '#fd8dbb';   // Путана
         case document.getElementById("f2").textContent: return '#8cc78f';   // ДОКТОР
-        case document.getElementById("f3").textContent: return '#9ac3e4';   // ШЕРИФ
+        case document.getElementById("f3").textContent: return '#79a5e7';   // ШЕРИФ //9ac3e4
         case document.getElementById("f4").textContent: return '#888888';   // ДОН
         case document.getElementById("f5").textContent: return '#d18775';   // МАНЬЯК
-        case document.getElementById("f6").textContent: return '#86e9f7';   // ЖУРНАЛИСТ
+        case document.getElementById("f6").textContent: return '#69c2bd';   // ЖУРНАЛИСТ //86e9f7
         case document.getElementById("f7").textContent: return '#d89dff';   // 1ЕКСТРА1
         case document.getElementById("f8").textContent: return '#ffc14f';   // 2ЕКСТРА2 //fffd9f
         case document.getElementById("f9").textContent: return '#c8f54c';   // 3ЕКСТРА3
@@ -578,14 +578,15 @@ function load()
                     {
                         localStorage.setItem("tv"+this.className.split(" ")[1], "0");
                         this.style.backgroundColor='whitesmoke';
-                        this.style.color='gray';
+                        //this.style.color='gray';
+                        this.style.color=getrolecolor(localStorage.getItem("tn"+this.className.split(" ")[1]))
                     }
                     else 
                     {
                         for (let k=0; k<document.getElementsByClassName(this.className).length;k++)
                         {
                             document.getElementsByClassName(this.className)[k].style.backgroundColor='whitesmoke';
-                            document.getElementsByClassName(this.className)[k].style.color='gray';
+                            document.getElementsByClassName(this.className)[k].style.color=getrolecolor(localStorage.getItem("tn"+this.className.split(" ")[1]));
                         }
                         localStorage.setItem("tv"+this.className.split(" ")[1], this.textContent)
                         this.style.backgroundColor='red';

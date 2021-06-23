@@ -308,6 +308,7 @@ function Addp()
                     div = document.createElement("div");
                     div.className="cell "+j;
                     div.textContent=i+1;
+                    div.style.color=getrolecolor(localStorage.getItem("tn"+j))
                     div.addEventListener("click", function()
                     {
                         if(this.style.backgroundColor == 'red')
@@ -565,6 +566,7 @@ function load()
                 div = document.createElement("div");
                 div.className="cell "+j;
                 div.textContent=i+1;
+                div.style.color=getrolecolor(localStorage.getItem("tn"+j))
                 if(localStorage.getItem("tv"+j)==i+1)
                 {
                     div.style.backgroundColor='red';

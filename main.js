@@ -31,7 +31,7 @@ function getrolecolor(role)
         case document.getElementById("f5").textContent: return '#d18775';   // МАНЬЯК
         case document.getElementById("f6").textContent: return '#86e9f7';   // ЖУРНАЛИСТ
         case document.getElementById("f7").textContent: return '#d89dff';   // 1ЕКСТРА1
-        case document.getElementById("f8").textContent: return '#fffd9f';   // 2ЕКСТРА2
+        case document.getElementById("f8").textContent: return '#ffc14f';   // 2ЕКСТРА2 //fffd9f
         case document.getElementById("f9").textContent: return '#c8f54c';   // 3ЕКСТРА3
         case document.getElementById("f10").textContent: return '#6c9c98';  // 4ЕКСТРА4
         case document.getElementById("f11").textContent: return '';         // мир

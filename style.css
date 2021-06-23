@@ -1,7 +1,7 @@
 body
 {
     min-width: 24rem;
-    max-width: 50%;
+    max-width: 100%;
     background-color: gray;
     margin: 4px;
     position: relative;
@@ -23,7 +23,6 @@ nav
 }
 main
 {
-    margin-top: 1rem;
     display: grid;
 }
 #roles div
@@ -41,10 +40,11 @@ main
 }
 #roles
 {
+    margin-top: 1rem;
+
     align-items: center;
     font-size: 1.25rem;
     display: grid;
-    
 
     grid-template-columns: 1rem 45% auto;
     grid-auto-rows: 2rem;
@@ -82,11 +82,12 @@ input
 }
 #cop
 {
+    display: none;
     text-align: center;
     font-size: 1.2rem;
     font-style: italic;
     font-weight: 900;
-    margin-top: 1.5rem;
+    margin-top: 1.0rem;
 
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none;   /* Chrome/Safari/Opera */
@@ -98,16 +99,19 @@ input
 }
 #gtable
 {
+    margin-top: 1rem;
     display: grid;
     font-size: 1.5rem;
     align-items: center;
     text-align: right;
     width: 100%;
-    max-height: 30rem;
-    overflow: auto;
+    /* max-height: 30rem; */
 }
 .vert
 {
+    position: -webkit-sticky;
+    position: sticky;
+    top: -0.5px;
     writing-mode: vertical-rl;
     height: 100%;
     width: auto;
@@ -122,7 +126,7 @@ input
 {
     align-items: center;
     border: 0.5px dotted black;
-    padding: 1px;
+    /* padding: 1px; */
     background-color: whitesmoke;
     font-size: 1.25rem;
     outline: none;
@@ -144,7 +148,7 @@ input
 .tabs
 {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 50% 50%;
 }
 .tabs button
 {
@@ -165,7 +169,7 @@ input
 {
     cursor: pointer; 
     padding: 0.5rem; 
-    margin-top: 0.5rem; 
+    /* margin-top: 1rem;  */
     font-size: 1.5rem; 
     background-color: orange; 
     outline: none;
@@ -178,3 +182,10 @@ input
     user-select: none;           /* Non-prefixed version, currently not supported by any browser */
     -khtml-user-select: none;    /* KHTML browsers (e.g. Konqueror) */
 }
+@media only screen and (min-width: 800px) 
+{
+    body
+    {
+        width: 50%;
+    }
+ }

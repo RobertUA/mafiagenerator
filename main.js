@@ -39,25 +39,25 @@ function getrolecolor(role)
     }
 }
 
-function Hide(i)
-{
-    if(i==1)
-    {
-        document.getElementById("hide1").style.backgroundColor=activebtncolor;
-        document.getElementById("hide2").style.backgroundColor=btncolor;
-        document.getElementById("roles").style.display = "grid";
-        document.getElementById("gtable").style.display = "none";
-        localStorage.setItem("hide", 1);
-    }
-    else if(i==2)
-    {
-        document.getElementById("hide1").style.backgroundColor=btncolor;
-        document.getElementById("hide2").style.backgroundColor=activebtncolor;
-        document.getElementById("roles").style.display = "none";
-        document.getElementById("gtable").style.display = "grid";
-        localStorage.setItem("hide", 2);
-    }
-}
+// function Hide(i)
+// {
+//     if(i==1)
+//     {
+//         document.getElementById("hide1").style.backgroundColor=activebtncolor;
+//         document.getElementById("hide2").style.backgroundColor=btncolor;
+//         document.getElementById("roles").style.display = "grid";
+//         document.getElementById("gtable").style.display = "none";
+//         localStorage.setItem("hide", 1);
+//     }
+//     else if(i==2)
+//     {
+//         document.getElementById("hide1").style.backgroundColor=btncolor;
+//         document.getElementById("hide2").style.backgroundColor=activebtncolor;
+//         document.getElementById("roles").style.display = "none";
+//         document.getElementById("gtable").style.display = "grid";
+//         localStorage.setItem("hide", 2);
+//     }
+// }
 
 function Addp()
 {
@@ -80,17 +80,17 @@ function Addp()
         alert("Ты шо, дурак? [Шота многа]");
         return 1;
     }
-    if(localStorage.getItem('hide')==2 && document.getElementById("gtable").style.display=='none') 
-    {
-        document.getElementById("roles").style.display = "none";
-        document.getElementById("gtable").style.display = "grid";
-        document.getElementById("hide1").style.backgroundColor=btncolor;
-        document.getElementById("hide2").style.backgroundColor=activebtncolor;
-    }
+    // if(localStorage.getItem('hide')==2 && document.getElementById("gtable").style.display=='none') 
+    // {
+    //     document.getElementById("roles").style.display = "none";
+    //     document.getElementById("gtable").style.display = "grid";
+    //     document.getElementById("hide1").style.backgroundColor=btncolor;
+    //     document.getElementById("hide2").style.backgroundColor=activebtncolor;
+    // }
 
     document.getElementById("btn").disabled = true;
-    document.getElementById("hide1").disabled = true;
-    document.getElementById("hide2").disabled = true;
+    // document.getElementById("hide1").disabled = true;
+    // document.getElementById("hide2").disabled = true;
 
     rl=[];
     players=[];
@@ -142,16 +142,17 @@ function Addp()
             ");
             return 1;
         }
-        document.getElementById("hide1").disabled = false;
-        document.getElementById("hide2").disabled = false;
 
-        if (document.getElementById("roles").style.display == "grid") localStorage.setItem("hide", 1);
-        else if (document.getElementById("gtable").style.display == "grid") localStorage.setItem("hide", 2);
-
+        // document.getElementById("hide1").disabled = false;
+        // document.getElementById("hide2").disabled = false;
 
         if (this.readyState == 4 && this.status == 200) 
         {
             clear();
+            
+            // if (document.getElementById("roles").style.display == "grid") localStorage.setItem("hide", 1);
+            // else if (document.getElementById("gtable").style.display == "grid") localStorage.setItem("hide", 2);
+
             let r = [];
             r= (this.response).split('\n');
             for(let i=0;i<rl.length;i++)
@@ -246,27 +247,26 @@ function Addp()
             //     document.getElementById("gtable").appendChild(div);
             // }
 
+            div = document.createElement("div");
+            div.className="vert"
+            div.textContent="Игроки";
+            //div.textContent="РОЛЬ";
+            document.getElementById("gtable").appendChild(div);
+            for (let j=0;j<localStorage.getItem("countroles");j++)
+            {
+                div = document.createElement("div");
+                div.className="vert"
+                div.style.backgroundColor='#ddd5a6'
+                div.textContent=localStorage.getItem("tn"+j);
+                div.style.backgroundColor=getrolecolor(div.textContent);
+                document.getElementById("gtable").appendChild(div);
+            }
+            
             for(let i=0;i<players.length;i++)
             {
-                if(i%10==0)
-                {
-                    div = document.createElement("div");
-                    div.className="vert"
-                    div.textContent="Игроки";
-                    //div.textContent="РОЛЬ";
-                    document.getElementById("gtable").appendChild(div);
-                    for (let j=0;j<localStorage.getItem("countroles");j++)
-                    {
-                        div = document.createElement("div");
-                        div.className="vert"
-                        div.style.backgroundColor='#ddd5a6'
-                        div.textContent=localStorage.getItem("tn"+j);
-                        div.style.backgroundColor=getrolecolor(div.textContent);
-                        document.getElementById("gtable").appendChild(div);
-                    }
-                }
                 div = document.createElement("div");
                 div.style.backgroundColor='#ddd5a6'
+                // div.style.height='100%'
                 div.textContent=localStorage.getItem("p"+i);
                 div.style.backgroundColor=getrolecolor(div.textContent);
                 div.style.cursor='pointer'
@@ -344,10 +344,10 @@ function load()
 {
     if(localStorage.getItem("version")==undefined || localStorage.getItem("version")!=current_version || localStorage.length<=1) 
     {
-        alert("[2.6 NEW]\
-        \n - Теперь только 2 вкладки (\"Роли\" и \"Таблица\")\
+        alert("[2.7 NEW]\
+        \n - Нах** вкладки! Теперь листай вниз\
+        \n - Клейкие заголовки в таблице\
         \n[2.5]\
-        \n - Вкладка \"Таблица\" (заголовки повторяются каждые 10 строк)\
         \n - Больше данных сохраняется\
         \n[2.4]\
         \n - Можно переименовать роли (стереть чтоб востановить стандартное имя роли)\
@@ -359,7 +359,8 @@ function load()
         ");
     }
     localStorage.setItem("version", current_version);
-    document.getElementById("cop").textContent="v"+current_version+" © Робік"
+    document.getElementById("cop").textContent="v"+current_version+" © Робік";
+    document.getElementById("cop").style.display="grid";
     
     
     if(localStorage.getItem("values")!=undefined)
@@ -456,35 +457,35 @@ function load()
     if(localStorage.getItem("playerscount")!=undefined) document.getElementById("count").value = localStorage.getItem("playerscount");
     else document.getElementById("count").value = 10;
 
-    if(localStorage.length<=4 || localStorage.getItem("n1")==undefined) 
-    {
-        localStorage.setItem('hide', 1);
-        document.getElementById("roles").style.display = "grid";
-        document.getElementById("gtable").style.display = "none";
+    // if(localStorage.length<=4 || localStorage.getItem("n1")==undefined) 
+    // {
+    //     localStorage.setItem('hide', 1);
+    //     document.getElementById("roles").style.display = "grid";
+    //     document.getElementById("gtable").style.display = "none";
         
-        document.getElementById("hide2").disabled = true;
+    //     document.getElementById("hide2").disabled = true;
 
-        document.getElementById("hide1").style.backgroundColor=activebtncolor;
-        document.getElementById("hide2").style.backgroundColor=btncolor;
-        return 1;
-    }
+    //     document.getElementById("hide1").style.backgroundColor=activebtncolor;
+    //     document.getElementById("hide2").style.backgroundColor=btncolor;
+    //     return 1;
+    // }
 
-    if(localStorage.getItem('hide') == 1)
-    {
-        document.getElementById("hide1").style.backgroundColor=activebtncolor;
-        document.getElementById("hide2").style.backgroundColor=btncolor;
+    // if(localStorage.getItem('hide') == 1)
+    // {
+    //     document.getElementById("hide1").style.backgroundColor=activebtncolor;
+    //     document.getElementById("hide2").style.backgroundColor=btncolor;
         
-        document.getElementById("roles").style.display = "grid";
-        document.getElementById("gtable").style.display = "none";
-    }
-    else
-    {
-        document.getElementById("hide1").style.backgroundColor=btncolor;
-        document.getElementById("hide2").style.backgroundColor=activebtncolor;
+    //     document.getElementById("roles").style.display = "grid";
+    //     document.getElementById("gtable").style.display = "none";
+    // }
+    // else
+    // {
+    //     document.getElementById("hide1").style.backgroundColor=btncolor;
+    //     document.getElementById("hide2").style.backgroundColor=activebtncolor;
         
-        document.getElementById("roles").style.display = "none";
-        document.getElementById("gtable").style.display = "grid";
-    }
+    //     document.getElementById("roles").style.display = "none";
+    //     document.getElementById("gtable").style.display = "grid";
+    // }
     
     
     if(localStorage.getItem("countroles")!=undefined)
@@ -505,26 +506,24 @@ function load()
         //     document.getElementById("gtable").appendChild(div);
         // }
 
+        div = document.createElement("div");
+        div.className="vert"
+        div.textContent="Игроки";
+        document.getElementById("gtable").appendChild(div);
+        for (let j=0;j<localStorage.getItem("countroles");j++)
+        {
+            div = document.createElement("div");
+            div.className="vert"
+            div.style.backgroundColor='#ddd5a6'
+            div.textContent=localStorage.getItem("tn"+j);
+            div.style.backgroundColor=getrolecolor(div.textContent);
+            document.getElementById("gtable").appendChild(div);
+        }
+        
         for(let i=0;i<localStorage.getItem("playerscount");i++)
         {
-            if(i%10==0)
-            {
-                div = document.createElement("div");
-                div.className="vert"
-                div.textContent="Игроки";
-                document.getElementById("gtable").appendChild(div);
-                for (let j=0;j<localStorage.getItem("countroles");j++)
-                {
-                    div = document.createElement("div");
-                    div.className="vert"
-                    div.style.backgroundColor='#ddd5a6'
-                    div.textContent=localStorage.getItem("tn"+j);
-                    div.style.backgroundColor=getrolecolor(div.textContent);
-                    document.getElementById("gtable").appendChild(div);
-                }
-            }
             div = document.createElement("div");
-            div.style.backgroundColor='#ddd5a6'
+            div.style.backgroundColor='#ddd5a6';
             div.textContent=localStorage.getItem("p"+i);
             div.style.backgroundColor=getrolecolor(div.textContent);
             div.style.cursor='pointer'

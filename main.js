@@ -4,7 +4,7 @@ let players=[];
 let btncolor="#96964c"
 let activebtncolor='yellow'
 
-current_version="2.6"
+current_version="2.8"
 
 function getrolecolor(role)
 {
@@ -283,7 +283,22 @@ function Addp()
                     div.style.textDecoration = "line-through";
                     div.style.color = "red";
                 }
-                //
+                //2.8
+                div.addEventListener('dblclick', function (e)
+                {
+                    card = document.createElement("div");
+                    card.id="card";
+                    card.addEventListener('dblclick', function (e)
+                    {
+                        card.remove();
+                    })
+                    //
+                    text = document.createElement("div");
+                    text.id = "cardtext";
+                    text.textContent=this.textContent
+                    document.getElementsByTagName("main")[0].appendChild(card);
+                    card.appendChild(text);
+                })
 
                 div.addEventListener("click", function()
                 {
@@ -345,7 +360,9 @@ function load()
 {
     if(localStorage.getItem("version")==undefined || localStorage.getItem("version")!=current_version || localStorage.length<=1) 
     {
-        alert("[2.7 NEW]\
+        alert("[2.8 NEW]\
+        \n - Двойное нажитие по игроку - показать карточку роли\
+        \n[2.7 NEW]\
         \n - Нах** вкладки! Теперь листай вниз\
         \n - Клейкие заголовки в таблице\
         \n[2.5]\
@@ -542,7 +559,24 @@ function load()
                 div.style.color = "red";
             }
             //
-
+            
+            //2.8
+            div.addEventListener('dblclick', function (e)
+            {
+                card = document.createElement("div");
+                card.id="card";
+                card.addEventListener('dblclick', function (e)
+                {
+                    card.remove();
+                })
+                //
+                text = document.createElement("div");
+                text.id = "cardtext";
+                text.textContent=this.textContent
+                document.getElementsByTagName("main")[0].appendChild(card);
+                card.appendChild(text);
+            })
+            
             div.addEventListener("click", function()
             {
                 if(this.style.textDecoration == "line-through")

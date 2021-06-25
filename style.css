@@ -5,6 +5,14 @@ body
     background-color: gray;
     margin: 4px;
     position: relative;
+    
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version, currently not supported by any browser */
+    -khtml-user-select: none;    /* KHTML browsers (e.g. Konqueror) */
 }
 nav
 {
@@ -40,7 +48,7 @@ main
 }
 #roles
 {
-    margin-top: 1rem;
+    margin-top: 2rem;
 
     align-items: center;
     font-size: 1.25rem;
@@ -48,14 +56,6 @@ main
 
     grid-template-columns: 1rem 45% auto;
     grid-auto-rows: 2rem;
-    
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none;   /* Chrome/Safari/Opera */
-    -khtml-user-select: none;    /* Konqueror */
-    -moz-user-select: none;      /* Firefox */
-    -ms-user-select: none;       /* Internet Explorer/Edge */
-    user-select: none;           /* Non-prefixed version, currently not supported by any browser */
-    -khtml-user-select: none;    /* KHTML browsers (e.g. Konqueror) */
 }
 input
 {
@@ -71,14 +71,6 @@ input
     background-color: whitesmoke;
     font-size: 1.5rem;
     outline: none;
-    
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none;   /* Chrome/Safari/Opera */
-    -khtml-user-select: none;    /* Konqueror */
-    -moz-user-select: none;      /* Firefox */
-    -ms-user-select: none;       /* Internet Explorer/Edge */
-    user-select: none;           /* Non-prefixed version, currently not supported by any browser */
-    -khtml-user-select: none;    /* KHTML browsers (e.g. Konqueror) */
 }
 #cop
 {
@@ -87,19 +79,11 @@ input
     font-size: 1.2rem;
     font-style: italic;
     font-weight: 900;
-    margin-top: 1.0rem;
-
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none;   /* Chrome/Safari/Opera */
-    -khtml-user-select: none;    /* Konqueror */
-    -moz-user-select: none;      /* Firefox */
-    -ms-user-select: none;       /* Internet Explorer/Edge */
-    user-select: none;           /* Non-prefixed version, currently not supported by any browser */
-    -khtml-user-select: none;    /* KHTML browsers (e.g. Konqueror) */
+    margin-top: 1rem;
 }
 #gtable
 {
-    margin-top: 1rem;
+    margin-top: 2rem;
     display: grid;
     font-size: 1.5rem;
     align-items: center;
@@ -130,14 +114,6 @@ input
     background-color: whitesmoke;
     font-size: 1.25rem;
     outline: none;
-
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none;   /* Chrome/Safari/Opera */
-    -khtml-user-select: none;    /* Konqueror */
-    -moz-user-select: none;      /* Firefox */
-    -ms-user-select: none;       /* Internet Explorer/Edge */
-    user-select: none;           /* Non-prefixed version, currently not supported by any browser */
-    -khtml-user-select: none;    /* KHTML browsers (e.g. Konqueror) */
 }
 .cell
 {
@@ -156,14 +132,6 @@ input
     margin-top: 0.5rem;
     font-size: 1.5rem;
     outline: none;
-
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none;   /* Chrome/Safari/Opera */
-    -khtml-user-select: none;    /* Konqueror */
-    -moz-user-select: none;      /* Firefox */
-    -ms-user-select: none;       /* Internet Explorer/Edge */
-    user-select: none;           /* Non-prefixed version, currently not supported by any browser */
-    -khtml-user-select: none;    /* KHTML browsers (e.g. Konqueror) */
 }
 #btn
 {
@@ -173,26 +141,17 @@ input
     font-size: 1.5rem; 
     background-color: orange; 
     outline: none;
-
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none;   /* Chrome/Safari/Opera */
-    -khtml-user-select: none;    /* Konqueror */
-    -moz-user-select: none;      /* Firefox */
-    -ms-user-select: none;       /* Internet Explorer/Edge */
-    user-select: none;           /* Non-prefixed version, currently not supported by any browser */
-    -khtml-user-select: none;    /* KHTML browsers (e.g. Konqueror) */
 }
 
 #card
 {
-    display: grid;
-    grid-template-columns: 60% 40%;
+    grid-template-rows: 90% auto;
+    grid-template-columns: 100%;
     font-size: 10vh;
     display: grid;
-    align-items: center;
+    vertical-align: middle;
     cursor: pointer;
     align-content: center;
-    vertical-align: middle;
     text-align: center;
     /* background-color: whitesmoke; */
     background-color: black;
@@ -201,19 +160,36 @@ input
     bottom: 0;
     right: 0;
     left: 0;
-
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none;   /* Chrome/Safari/Opera */
-    -khtml-user-select: none;    /* Konqueror */
-    -moz-user-select: none;      /* Firefox */
-    -ms-user-select: none;       /* Internet Explorer/Edge */
-    user-select: none;           /* Non-prefixed version, currently not supported by any browser */
-    -khtml-user-select: none;    /* KHTML browsers (e.g. Konqueror) */
+}
+#control
+{
+    display: grid;
+    grid-template-columns: 35% auto 35%;
 }
 #cardtext
 {
-    writing-mode: vertical-rl;
-    width: "auto";
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+    writing-mode: vertical-lr;
+    /* width: auto; */
+    color: white;
+    text-align: center;
+    /* height: 100%; */
+}
+#text
+{
+    height: 100%;
+    /* width: 100%; */
+}
+#left, #right, #cur
+{
+    /* border: black solid 1rem; */
+    margin: 1px;
+    text-align: center;
+    /* height: 100%; */
+    background-color: gray;
     color: white;
 }
 @media only screen and (min-width: 800px) /* >800 (>768) */
@@ -222,9 +198,10 @@ input
     {
         width: 50%;
     }
-    #card
+    #text
     {
-        grid-template-columns: 100%;
+        height: auto;
+        width: 100%;
     }
     #cardtext
     {

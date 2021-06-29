@@ -4,7 +4,7 @@ let players=[];
 let btncolor="#96964c"
 let activebtncolor='yellow'
 
-current_version="2.9"
+current_version="3.0"
 
 function getrolecolor(role)
 {
@@ -250,6 +250,8 @@ function Addp()
             div = document.createElement("div");
             div.className="vert"
             div.textContent="Игроки";
+            div.addEventListener("click", show);
+            div.style.cursor="pointer";
             //div.textContent="РОЛЬ";
             document.getElementById("gtable").appendChild(div);
             for (let j=0;j<localStorage.getItem("countroles");j++)
@@ -333,6 +335,7 @@ function Addp()
                             if(this.textContent==0) this.textContent="";
                             // if(right.textContent==Number(localStorage.getItem("playerscount"))+1) right.textContent="";
                         }
+                        else document.getElementById("card").remove();
                     })
                     
 
@@ -347,6 +350,7 @@ function Addp()
                             // if(left.textContent==0) left.textContent="";
                             if(this.textContent==Number(localStorage.getItem("playerscount"))+1) this.textContent="";
                         }
+                        else document.getElementById("card").remove();
                     })
                 })
 
@@ -410,18 +414,23 @@ function load()
 {
     if(localStorage.getItem("version")==undefined || localStorage.getItem("version")!=current_version || localStorage.length<=1) 
     {
-        alert("[2.9]\
-        \n - Двойное нажитие по игроку - интерфейс раздачи ролей\
-        \n - (чтобы закрыть - тоже двойное нажатие)\
+        alert("[3.0]\
+        \n - Интерфейс раздачи ролей обновлен\
+        \nОткрыть его можно нажатием на ячейку \"Игроки\"\
+        \nили двойным нажатием на роль игрока\
+        \nЗакрыть можно пролистав до границ либо\
+        \nдвойным нажатием по фону\
         \n[2.7]\
-        \n - Нах** вкладки! Теперь листай вниз\
+        \n - Без вкладок! Теперь листай вниз\
         \n - Клейкие заголовки в таблице\
         \n[2.5]\
         \n - Больше данных сохраняется\
         \n[2.4]\
-        \n - Можно переименовать роли (стереть чтоб востановить стандартное имя роли)\
+        \n - Можно переименовать роли \
+        \n(стереть чтоб востановить стандартное имя роли)\
         \n[2.3]\
-        \n - Клик по игроку, чтобы зачеркнуть его (выгнали/убили)\
+        \n - Клик по игроку, чтобы зачеркнуть его\
+        \n(выгнали/убили)\
         \n[2.2]\
         \n - Данные сохраняются\
         \n - У ролей есть цвета\
@@ -578,6 +587,8 @@ function load()
         div = document.createElement("div");
         div.className="vert"
         div.textContent="Игроки";
+        div.style.cursor="pointer";
+        div.addEventListener("click", show);
         document.getElementById("gtable").appendChild(div);
         for (let j=0;j<localStorage.getItem("countroles");j++)
         {
@@ -660,6 +671,7 @@ function load()
                         if(this.textContent==0) this.textContent="";
                         // if(right.textContent==Number(localStorage.getItem("playerscount"))+1) right.textContent="";
                     }
+                    else document.getElementById("card").remove();
                 })
                 
 
@@ -674,6 +686,7 @@ function load()
                         // if(left.textContent==0) left.textContent="";
                         if(this.textContent==Number(localStorage.getItem("playerscount"))+1) this.textContent="";
                     }
+                    else document.getElementById("card").remove();
                 })
             })
             
@@ -796,6 +809,73 @@ function load()
         
     }
     */
+}
+
+function show()
+{
+    card = document.createElement("div");
+    card.id="card";
+    //
+    cur = document.createElement("div");
+    cur.id = "cur";
+    cur.textContent="1";
+    left = document.createElement("div");
+    left.id = "left";
+    left.textContent="";
+    right = document.createElement("div");
+    right.id = "right";
+    right.textContent="2";
+    text = document.createElement("div");
+    // text.id = "cardtext";
+    text.id = "text";
+    text.textContent=localStorage.getItem("p0");
+    document.getElementsByTagName("main")[0].appendChild(card);
+    div = document.createElement("div")
+    div.appendChild(text)
+    div.id = "cardtext"
+    div.addEventListener('dblclick', function (e)
+    {
+        document.getElementById("card").remove();
+    })
+    card.appendChild(div);
+    div = document.createElement("div")
+    div.id="control"
+    div.appendChild(left);
+    div.appendChild(cur);
+    div.appendChild(right);
+    card.appendChild(div)
+    if(left.textContent==0) left.textContent="";
+    if(right.textContent==Number(localStorage.getItem("playerscount"))+1) right.textContent="";
+    
+    left.addEventListener('click', function ()
+    {
+        if(this.textContent!="")
+        {
+            document.getElementById("text").textContent=localStorage.getItem("p"+(Number(this.textContent)-1));
+            document.getElementById("cur").textContent=Number(this.textContent);
+            document.getElementById("right").textContent=Number(this.textContent)+1;
+            this.textContent=Number(this.textContent)-1;
+            
+            if(this.textContent==0) this.textContent="";
+            // if(right.textContent==Number(localStorage.getItem("playerscount"))+1) right.textContent="";
+        }
+        else document.getElementById("card").remove();
+    })
+    
+    
+    right.addEventListener('click', function ()
+    {
+        if(this.textContent!="")
+        {
+            document.getElementById("text").textContent=localStorage.getItem("p"+(Number(this.textContent)-1));
+            document.getElementById("cur").textContent=Number(this.textContent);
+            document.getElementById("left").textContent=Number(this.textContent)-1;
+            this.textContent=Number(this.textContent)+1;
+            // if(left.textContent==0) left.textContent="";
+            if(this.textContent==Number(localStorage.getItem("playerscount"))+1) this.textContent="";
+        }
+        else document.getElementById("card").remove();
+    })
 }
 
 function checkedbydiv(i)

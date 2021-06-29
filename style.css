@@ -48,7 +48,7 @@ main
 }
 #roles
 {
-    margin-top: 2rem;
+    /* margin-top: 2rem; */
 
     align-items: center;
     font-size: 1.25rem;
@@ -133,7 +133,7 @@ input
     font-size: 1.5rem;
     outline: none;
 }
-#btn
+#btn, #show
 {
     cursor: pointer; 
     padding: 0.5rem; 
@@ -141,6 +141,14 @@ input
     font-size: 1.5rem; 
     background-color: orange; 
     outline: none;
+}
+#btn
+{
+    margin-bottom: 2rem;
+}
+#show
+{
+    margin-top: 2rem;
 }
 
 #card

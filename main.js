@@ -119,9 +119,6 @@ function Addp()
         rl.push(document.getElementById("f12").textContent);
     }
 
-    localStorage.setItem("mafcount",  document.getElementById("mafc").value);
-    localStorage.setItem("playerscount", document.getElementById("count").value);
-
     let xmlr= "https://www.random.org/sequences/?min=0&max="+Number(document.getElementById("count").value-1)+"&col=1&format=plain";
     let http = new XMLHttpRequest()
     http.open('GET', xmlr);
@@ -149,6 +146,9 @@ function Addp()
         if (this.readyState == 4 && this.status == 200) 
         {
             clear();
+            
+            localStorage.setItem("mafcount",  document.getElementById("mafc").value);
+            localStorage.setItem("playerscount", document.getElementById("count").value);
             
             // if (document.getElementById("roles").style.display == "grid") localStorage.setItem("hide", 1);
             // else if (document.getElementById("gtable").style.display == "grid") localStorage.setItem("hide", 2);
@@ -332,7 +332,7 @@ function Addp()
                             document.getElementById("right").textContent=Number(this.textContent)+1;
                             this.textContent=Number(this.textContent)-1;
 
-                            if(this.textContent==0) this.textContent="";
+                            if(this.textContent==0) this.textContent="out";
                             // if(right.textContent==Number(localStorage.getItem("playerscount"))+1) right.textContent="";
                         }
                         else document.getElementById("card").remove();
@@ -348,7 +348,7 @@ function Addp()
                             document.getElementById("left").textContent=Number(this.textContent)-1;
                             this.textContent=Number(this.textContent)+1;
                             // if(left.textContent==0) left.textContent="";
-                            if(this.textContent==Number(localStorage.getItem("playerscount"))+1) this.textContent="";
+                            if(this.textContent==Number(localStorage.getItem("playerscount"))+1) this.textContent="out";
                         }
                         else document.getElementById("card").remove();
                     })
@@ -451,7 +451,7 @@ function Addp()
 
 function load()
 {
-    if(localStorage.getItem("version")==undefined || localStorage.getItem("version")!=current_version || localStorage.length<=1) 
+    if(localStorage.getItem("version")==undefined || localStorage.getItem("version")!=current_version) 
     {
         alert("[3.0]\
         \n - Интерфейс раздачи ролей обновлен\
@@ -882,8 +882,8 @@ function updatevalues()
     if(document.getElementById("10").checked==true) str+='1'; else str+='0';
 
     localStorage.setItem("values", str);
-    localStorage.setItem("mafcount",  document.getElementById("mafc").value);
-    localStorage.setItem("playerscount", document.getElementById("count").value);
+    // localStorage.setItem("mafcount",  document.getElementById("mafc").value);
+    // localStorage.setItem("playerscount", document.getElementById("count").value);
 }
 
 function getdflt(i)

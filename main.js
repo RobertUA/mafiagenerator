@@ -269,8 +269,8 @@ function Addp()
                 div = document.createElement("div");
                 div.style.backgroundColor='#ddd5a6'
                 // div.style.height='100%'
-                div.textContent=localStorage.getItem("p"+i);
-                div.style.backgroundColor=getrolecolor(div.textContent);
+                div.textContent=localStorage.getItem("p"+i).slice(0,3);
+                div.style.backgroundColor=getrolecolor(localStorage.getItem("p"+i));
                 div.style.cursor='pointer'
                 div.className='unselectable ' + i;
 
@@ -304,7 +304,7 @@ function Addp()
                     text = document.createElement("div");
                     // text.id = "cardtext";
                     text.id = "text";
-                    text.textContent=this.textContent;
+                    text.textContent=localStorage.getItem("p"+Number(this.className.split(" ")[1]));
                     document.getElementsByTagName("main")[0].appendChild(card);
                     div = document.createElement("div")
                     div.appendChild(text)
@@ -320,12 +320,12 @@ function Addp()
                     div.appendChild(cur);
                     div.appendChild(right);
                     card.appendChild(div)
-                    if(left.textContent==0) left.textContent="";
-                    if(right.textContent==Number(localStorage.getItem("playerscount"))+1) right.textContent="";
+                    if(left.textContent==0) left.textContent="out";
+                    if(right.textContent==Number(localStorage.getItem("playerscount"))+1) right.textContent="out";
 
                     left.addEventListener('click', function ()
                     {
-                        if(this.textContent!="")
+                        if(this.textContent!="out")
                         {
                             document.getElementById("text").textContent=localStorage.getItem("p"+(Number(this.textContent)-1));
                             document.getElementById("cur").textContent=Number(this.textContent);
@@ -341,7 +341,7 @@ function Addp()
 
                     right.addEventListener('click', function ()
                     {
-                        if(this.textContent!="")
+                        if(this.textContent!="out")
                         {
                             document.getElementById("text").textContent=localStorage.getItem("p"+(Number(this.textContent)-1));
                             document.getElementById("cur").textContent=Number(this.textContent);
@@ -372,26 +372,33 @@ function Addp()
                 })
                 document.getElementById("gtable").appendChild(div);
 
+
                 for (let j=0;j<rl.length+1;j++)
                 {
                     div = document.createElement("div");
                     div.className="cell "+j;
                     div.textContent=i+1;
                     div.style.color=getrolecolor(localStorage.getItem("tn"+j))
+                    if(localStorage.getItem("tv"+j)==i+1)
+                    {
+                        div.style.backgroundColor='red';
+                        div.style.color='black';
+                    }
                     div.addEventListener("click", function()
                     {
                         if(this.style.backgroundColor == 'red')
                         {
-                            localStorage.setItem("tv"+this.className.split(" ")[1], "0")
+                            localStorage.setItem("tv"+this.className.split(" ")[1], "0");
                             this.style.backgroundColor='whitesmoke';
-                            this.style.color='gray';
+                            //this.style.color='gray';
+                            this.style.color=getrolecolor(localStorage.getItem("tn"+this.className.split(" ")[1]))
                         }
                         else 
                         {
                             for (let k=0; k<document.getElementsByClassName(this.className).length;k++)
                             {
                                 document.getElementsByClassName(this.className)[k].style.backgroundColor='whitesmoke';
-                                document.getElementsByClassName(this.className)[k].style.color='gray';
+                                document.getElementsByClassName(this.className)[k].style.color=getrolecolor(localStorage.getItem("tn"+this.className.split(" ")[1]));
                             }
                             localStorage.setItem("tv"+this.className.split(" ")[1], this.textContent)
                             this.style.backgroundColor='red';
@@ -403,6 +410,38 @@ function Addp()
                     document.getElementById("gtable").appendChild(div);
                 }
             }
+
+            //     for (let j=0;j<rl.length+1;j++)
+            //     {
+            //         div = document.createElement("div");
+            //         div.className="cell "+j;
+            //         div.textContent=i+1;
+            //         div.style.color=getrolecolor(localStorage.getItem("tn"+j))
+            //         div.addEventListener("click", function()
+            //         {
+            //             if(this.style.backgroundColor == 'red')
+            //             {
+            //                 localStorage.setItem("tv"+this.className.split(" ")[1], "0")
+            //                 this.style.backgroundColor='whitesmoke';
+            //                 this.style.color='gray';
+            //             }
+            //             else 
+            //             {
+            //                 for (let k=0; k<document.getElementsByClassName(this.className).length;k++)
+            //                 {
+            //                     document.getElementsByClassName(this.className)[k].style.backgroundColor='whitesmoke';
+            //                     document.getElementsByClassName(this.className)[k].style.color='gray';
+            //                 }
+            //                 localStorage.setItem("tv"+this.className.split(" ")[1], this.textContent)
+            //                 this.style.backgroundColor='red';
+            //                 this.style.color='black';
+            //             }
+            //             // this.style.backgroundColor = (this.style.backgroundColor == 'red') ? 'whitesmoke' : 'red';
+            //             // this.style.color = (this.style.color == 'red') ? 'whitesmoke' : 'red';
+            //         })
+            //         document.getElementById("gtable").appendChild(div);
+            //     }
+            // }
         
             for(let i=1; i<=12;i++) updaterolesnames(""+i);
             updatevalues();
@@ -604,8 +643,8 @@ function load()
         {
             div = document.createElement("div");
             div.style.backgroundColor='#ddd5a6';
-            div.textContent=localStorage.getItem("p"+i);
-            div.style.backgroundColor=getrolecolor(div.textContent);
+            div.textContent=localStorage.getItem("p"+i).slice(0,3);
+            div.style.backgroundColor=getrolecolor(localStorage.getItem("p"+i));
             div.style.cursor='pointer'
             div.className='unselectable ' + i;
 
@@ -640,7 +679,7 @@ function load()
                 text = document.createElement("div");
                 // text.id = "cardtext";
                 text.id = "text";
-                text.textContent=this.textContent;
+                text.textContent=localStorage.getItem("p"+Number(this.className.split(" ")[1]));
                 document.getElementsByTagName("main")[0].appendChild(card);
                 div = document.createElement("div")
                 div.appendChild(text)
@@ -747,68 +786,6 @@ function load()
             }
         }
     }
-
-    /*
-    let count = 0;
-    for(let i=0; i<document.getElementById("count").value;i++)
-    {
-        count++;
-        let div = document.createElement("div");
-        div.className="row unselectable";
-        document.getElementById("list").appendChild(div);
-        let input = document.createElement("div");
-        input.textContent=count;
-        input.readOnly=true;
-        
-        let t = input;
-
-        div.appendChild(input);
-        input = document.createElement("div");
-        input.textContent=localStorage.getItem("p"+i);
-        input.readOnly=true;
-        
-        input.style.backgroundColor=getrolecolor(input.textContent);
-        input.style.cursor='pointer'
-        input.className='unselectable ' + i;
-
-        //
-        if(localStorage.getItem("IA"+i)=="1" || localStorage.getItem("IA"+i)==undefined)
-        {
-            t.style.backgroundColor = "out";
-            input.style.textDecoration = "none";
-            input.style.color = "black";
-        }
-        else 
-        {
-            t.style.backgroundColor = "red";
-            input.style.textDecoration = "line-through";
-            input.style.color = "red";
-        }
-        //
-
-        input.addEventListener("click", function()
-        {
-            let t = this.previousSibling;
-            if(this.style.textDecoration == "line-through")
-            {
-                t.style.backgroundColor = "out";
-                this.style.textDecoration = "none";
-                this.style.color = "black";
-                localStorage.setItem("IA"+this.className.split(" ")[1], "1");
-            }
-            else 
-            {
-                t.style.backgroundColor = "red";
-                this.style.textDecoration = "line-through";
-                this.style.color = "red";
-                localStorage.setItem("IA"+this.className.split(" ")[1], "0");
-            }
-            // this.style.fontStyle = (this.style.fontStyle == 'italic') ? 'normal' : 'italic';
-        })
-        div.appendChild(input);
-        
-    }
-    */
 }
 
 function show()

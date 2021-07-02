@@ -1,6 +1,6 @@
 body
 {
-    min-width: 30rem;
+    /* min-width: 30rem; */
     width: 95%;
     background-color: gray;
     margin: auto;
@@ -61,7 +61,7 @@ main
 input
 {
     background-color: whitesmoke;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     outline: none;
     box-sizing: border-box;
 }
@@ -71,23 +71,24 @@ input
     padding: 1px;
     border: 0.5px dotted black;
     background-color: whitesmoke;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     outline: none;
 }
 #cop
 {
     display: none;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     font-style: italic;
     font-weight: 900;
     margin-top: 2rem;
+    margin-bottom: 1rem;
 }
 #gtable
 {
     /* margin-top: 2rem; */
     display: grid;
-    font-size: 1.5rem;
+    font-size: 1rem;
     align-items: center;
     text-align: right;
     width: 100%;
@@ -114,7 +115,6 @@ input
     border: 0.5px dotted black;
     /* padding: 1px; */
     background-color: whitesmoke;
-    font-size: 1.25rem;
     outline: none;
 }
 .cell
@@ -122,18 +122,6 @@ input
     cursor: pointer;
     font-weight: 900;
     color: gray;
-}
-.tabs
-{
-    display: grid;
-    grid-template-columns: 50% 50%;
-}
-.tabs button
-{
-    cursor: pointer;
-    margin-top: 0.5rem;
-    font-size: 1.5rem;
-    outline: none;
 }
 #btn
 {
@@ -143,12 +131,8 @@ input
     font-size: 1.5rem; 
     background-color: orange; 
     outline: none;
-}
-#btn
-{
     margin-bottom: 2rem;
 }
-
 #card
 {
     grid-template-rows: 90% auto;
@@ -204,11 +188,10 @@ input
     {
         width: 50%;
     }
-    /* main
+    #gtable
     {
-        grid-template-columns: 35% auto;
-        column-gap: 10%;
-    } */
+        font-size: 1.25rem;
+    }
     #text
     {
         height: auto;

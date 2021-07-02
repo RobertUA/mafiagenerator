@@ -39,13 +39,13 @@ main
 {
     margin-left: 0.5rem;
     margin-right: 0.5rem;
-    font-size: 1.25rem;
+    font-size: 1rem;
     box-sizing: border-box;
 }
 #roles input
 {
     width: 100%;
-    font-size: 1.25rem;
+    font-size: 1rem;
 }
 #roles
 {
@@ -61,7 +61,7 @@ main
 input
 {
     background-color: whitesmoke;
-    font-size: 1.25rem;
+    font-size: 1rem;
     outline: none;
     box-sizing: border-box;
 }
@@ -71,7 +71,7 @@ input
     padding: 1px;
     border: 0.5px dotted black;
     background-color: whitesmoke;
-    font-size: 1.25rem;
+    font-size: 1rem;
     outline: none;
 }
 #cop

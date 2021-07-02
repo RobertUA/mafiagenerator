@@ -656,19 +656,19 @@ function load()
                 div.appendChild(cur);
                 div.appendChild(right);
                 card.appendChild(div)
-                if(left.textContent==0) left.textContent="";
-                if(right.textContent==Number(localStorage.getItem("playerscount"))+1) right.textContent="";
+                if(left.textContent==0) left.textContent="out";
+                if(right.textContent==Number(localStorage.getItem("playerscount"))+1) right.textContent="out";
 
                 left.addEventListener('click', function ()
                 {
-                    if(this.textContent!="")
+                    if(this.textContent!="out")
                     {
                         document.getElementById("text").textContent=localStorage.getItem("p"+(Number(this.textContent)-1));
                         document.getElementById("cur").textContent=Number(this.textContent);
                         document.getElementById("right").textContent=Number(this.textContent)+1;
                         this.textContent=Number(this.textContent)-1;
 
-                        if(this.textContent==0) this.textContent="";
+                        if(this.textContent==0) this.textContent="out";
                         // if(right.textContent==Number(localStorage.getItem("playerscount"))+1) right.textContent="";
                     }
                     else document.getElementById("card").remove();
@@ -677,14 +677,14 @@ function load()
 
                 right.addEventListener('click', function ()
                 {
-                    if(this.textContent!="")
+                    if(this.textContent!="out")
                     {
                         document.getElementById("text").textContent=localStorage.getItem("p"+(Number(this.textContent)-1));
                         document.getElementById("cur").textContent=Number(this.textContent);
                         document.getElementById("left").textContent=Number(this.textContent)-1;
                         this.textContent=Number(this.textContent)+1;
                         // if(left.textContent==0) left.textContent="";
-                        if(this.textContent==Number(localStorage.getItem("playerscount"))+1) this.textContent="";
+                        if(this.textContent==Number(localStorage.getItem("playerscount"))+1) this.textContent="out";
                     }
                     else document.getElementById("card").remove();
                 })
@@ -774,7 +774,7 @@ function load()
         //
         if(localStorage.getItem("IA"+i)=="1" || localStorage.getItem("IA"+i)==undefined)
         {
-            t.style.backgroundColor = "";
+            t.style.backgroundColor = "out";
             input.style.textDecoration = "none";
             input.style.color = "black";
         }
@@ -791,7 +791,7 @@ function load()
             let t = this.previousSibling;
             if(this.style.textDecoration == "line-through")
             {
-                t.style.backgroundColor = "";
+                t.style.backgroundColor = "out";
                 this.style.textDecoration = "none";
                 this.style.color = "black";
                 localStorage.setItem("IA"+this.className.split(" ")[1], "1");
@@ -821,7 +821,7 @@ function show()
     cur.textContent="1";
     left = document.createElement("div");
     left.id = "left";
-    left.textContent="";
+    left.textContent="out";
     right = document.createElement("div");
     right.id = "right";
     right.textContent="2";
@@ -844,20 +844,20 @@ function show()
     div.appendChild(cur);
     div.appendChild(right);
     card.appendChild(div)
-    if(left.textContent==0) left.textContent="";
-    if(right.textContent==Number(localStorage.getItem("playerscount"))+1) right.textContent="";
+    if(left.textContent==0) left.textContent="out";
+    if(right.textContent==Number(localStorage.getItem("playerscount"))+1) right.textContent="out";
     
     left.addEventListener('click', function ()
     {
-        if(this.textContent!="")
+        if(this.textContent!="out")
         {
             document.getElementById("text").textContent=localStorage.getItem("p"+(Number(this.textContent)-1));
             document.getElementById("cur").textContent=Number(this.textContent);
             document.getElementById("right").textContent=Number(this.textContent)+1;
             this.textContent=Number(this.textContent)-1;
             
-            if(this.textContent==0) this.textContent="";
-            // if(right.textContent==Number(localStorage.getItem("playerscount"))+1) right.textContent="";
+            if(this.textContent==0) this.textContent="out";
+            // if(right.textContent==Number(localStorage.getItem("playerscount"))+1) right.textContent="out";
         }
         else document.getElementById("card").remove();
     })
@@ -865,14 +865,14 @@ function show()
     
     right.addEventListener('click', function ()
     {
-        if(this.textContent!="")
+        if(this.textContent!="out")
         {
             document.getElementById("text").textContent=localStorage.getItem("p"+(Number(this.textContent)-1));
             document.getElementById("cur").textContent=Number(this.textContent);
             document.getElementById("left").textContent=Number(this.textContent)-1;
             this.textContent=Number(this.textContent)+1;
-            // if(left.textContent==0) left.textContent="";
-            if(this.textContent==Number(localStorage.getItem("playerscount"))+1) this.textContent="";
+            // if(left.textContent==0) left.textContent="out";
+            if(this.textContent==Number(localStorage.getItem("playerscount"))+1) this.textContent="out";
         }
         else document.getElementById("card").remove();
     })
